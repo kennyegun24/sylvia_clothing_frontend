@@ -23,3 +23,13 @@
     opacity: 0.4;
   }
 }
+
+@media (min-width: 200px) and (max-width: 767px) {
+  .footer {
+    padding: 3rem 2rem;
+    .footer_links {
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+  }
+}
