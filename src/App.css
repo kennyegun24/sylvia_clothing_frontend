@@ -199,6 +199,33 @@ body {
   font-size: 12px;
 }
 
+.font14 {
+  font-size: 14px;
+}
+.font15 {
+  font-size: 15px;
+}
+
+.font20 {
+  font-size: 20px;
+}
+
+.font24 {
+  font-size: 24px;
+}
+
 .black_text {
   color: #111;
+}
+
+a {
+  text-decoration: none;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.footerDiv {
+  justify-self: baseline;
 }

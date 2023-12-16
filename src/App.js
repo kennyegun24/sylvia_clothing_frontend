@@ -4,9 +4,12 @@ import Nav from "./components/nav/Nav";
 
 function App() {
   return (
-    <div>
+    <div className="app flex column">
       <Nav />
-      <Footer />
+      <div style={{ minHeight: "70vh" }}></div>
+      <div className="footerDiv">
+        <Footer />
+      </div>
     </div>
   );
 }
