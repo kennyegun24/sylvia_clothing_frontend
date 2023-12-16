@@ -22,6 +22,9 @@
     outline: none;
     opacity: 0.4;
   }
+  .footer_bottom {
+    gap: 1rem;
+  }
 }
 
 @media (min-width: 200px) and (max-width: 767px) {
@@ -30,6 +33,11 @@
     .footer_links {
       flex-direction: column;
       gap: 2.5rem;
+    }
+    .footer_bottom {
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
     }
   }
 }

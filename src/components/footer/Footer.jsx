@@ -36,8 +36,8 @@ const Footer = () => {
           <FaFacebook />
         </div>
         <hr className="width100 footer_line" />
-        <div className="flex gap1rem align_center">
-          <p className="font10">&copy; 2024, SYLVIA CLOTHINGS</p>
+        <div className="flex align_center footer_bottom">
+          <p className="font10">&copy; 2024, BK CLOTHINGS</p>
           <a href="/" className="font10 black_text">
             Return policy
           </a>
