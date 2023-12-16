@@ -1,0 +1,25 @@
+.footer {
+  background-color: #eebec0;
+  padding: 5% 0;
+  .footer_links {
+    justify-content: space-evenly;
+
+    section {
+      h2 {
+        font-size: 16px;
+        font-weight: 700;
+        letter-spacing: 2px;
+      }
+      a {
+        font-size: 13px;
+        color: #111;
+        letter-spacing: 1px;
+      }
+    }
+  }
+  .footer_line {
+    border: 0.2px solid #facaf8;
+    outline: none;
+    opacity: 0.4;
+  }
+}
