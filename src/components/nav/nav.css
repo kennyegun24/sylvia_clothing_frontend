@@ -68,6 +68,7 @@
       }
       .show_menu {
         left: 0;
+        transition: none;
       }
     }
   }
