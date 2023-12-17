@@ -72,3 +72,23 @@
     }
   }
 }
+@media (min-width: 200px) and (max-width: 767px) {
+  .firstSection {
+    padding: 1rem;
+    h2 {
+      font-size: 38px;
+    }
+    p {
+      font-size: 18px;
+      text-align: center;
+    }
+  }
+
+  .second_section {
+    .categories {
+      .category {
+        width: 100%;
+      }
+    }
+  }
+}
