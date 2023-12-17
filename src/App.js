@@ -2,7 +2,7 @@ import "./App.css";
 import CartModal from "./components/cart/CartModal";
 import Footer from "./components/footer/Footer";
 import Nav from "./components/nav/Nav";
-import { ShowCartProvider } from "./hooks/showCart";
+import { ShowCartProvider } from "./context/showCart";
 
 function App() {
   return (

@@ -3,7 +3,7 @@ import "./nav.css";
 import { CiShoppingCart, CiSearch } from "react-icons/ci";
 import { FaBars, FaFacebook, FaInstagram } from "react-icons/fa";
 import logo from "../../assets/logo.jpg";
-import { ShowCartContext } from "../../hooks/showCart";
+import { ShowCartContext } from "../../context/showCart";
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
   const { toggleCart } = useContext(ShowCartContext);

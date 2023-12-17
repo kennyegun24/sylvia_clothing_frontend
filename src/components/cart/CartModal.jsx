@@ -8,7 +8,7 @@ import { RiDeleteBin5Line, RiSubtractFill } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa6";
 import { SiVisa } from "react-icons/si";
 import { FaCcMastercard } from "react-icons/fa";
-import { ShowCartContext } from "../../hooks/showCart";
+import { ShowCartContext } from "../../context/showCart";
 
 const _mock_items = [
   {

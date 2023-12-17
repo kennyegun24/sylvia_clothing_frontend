@@ -18,7 +18,7 @@
     padding: 0 0 1rem 0;
 
     .card_header {
-      background: #e9e9e9;
+      background: #eebec0;
       text-align: center;
       position: sticky;
       top: 0;
@@ -44,7 +44,7 @@
           object-fit: cover;
         }
         .cart_product_name_price {
-          letter-spacing: 0.5px;
+          letter-spacing: 0.2px;
         }
         .cart_add_reduce_div {
           border: 1px solid #111;
