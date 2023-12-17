@@ -18,7 +18,7 @@
     padding: 0 0 1rem 0;
 
     .card_header {
-      background: #7fbafc;
+      background: #b2d6ff;
       /* background: #eebec0; */
       text-align: center;
       position: sticky;
@@ -73,7 +73,7 @@
     }
     .checkout_btn {
       border: none;
-      background: #7fbafc;
+      background: #b2d6ff;
       /* background: #eebec0; */
     }
     .visa_mastarcard {

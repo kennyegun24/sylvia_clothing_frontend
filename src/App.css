@@ -193,6 +193,10 @@ body {
   margin-top: 1rem;
 }
 
+.margin_top_2rem {
+  margin-top: 2rem;
+}
+
 .width100 {
   width: 100%;
 }
@@ -217,6 +221,10 @@ body {
 
 .font16 {
   font-size: var(--16px);
+}
+
+.font18 {
+  font-size: var(--18px);
 }
 
 .font20 {
