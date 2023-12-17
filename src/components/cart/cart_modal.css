@@ -1,0 +1,99 @@
+.cart_modal_container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.5rem;
+  right: -100%;
+  transition: 0.2s ease-in-out;
+
+  .cart_modal {
+    width: 30%;
+    border-radius: 1rem;
+    background: #fff;
+    height: 100%;
+    overflow-y: auto;
+    padding: 0 0 1rem 0;
+
+    .card_header {
+      background: #e9e9e9;
+      text-align: center;
+      position: sticky;
+      top: 0;
+      width: 100%;
+
+      .cart_hide_icon {
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-weight: 700;
+      }
+    }
+
+    .cart_items {
+      padding: 1rem;
+      width: 100%;
+      .cart_item {
+        width: 100%;
+        .cart_image {
+          height: 80px;
+          width: 80px;
+          object-fit: cover;
+        }
+        .cart_product_name_price {
+          letter-spacing: 0.5px;
+        }
+        .cart_add_reduce_div {
+          border: 1px solid #111;
+          gap: 0.3rem;
+          padding: 0.1rem 0.2rem;
+          .cart_add {
+            border-left: 1px solid #111;
+          }
+
+          p {
+            padding: 0 0.2rem;
+          }
+          .cart_reduce {
+            border-right: 1px solid #111;
+          }
+        }
+      }
+    }
+
+    .sub_total {
+      width: 100%;
+      h3 {
+        font-size: 20px;
+      }
+    }
+    .checkout_btn {
+      border: none;
+      background: #eebec0;
+    }
+    .visa_mastarcard {
+      background: linear-gradient(to right, #f4f4f4, #a5a5a5);
+      padding: 0.2rem;
+      font-size: 24px;
+    }
+  }
+}
+
+.show_cart {
+  right: 0;
+}
+
+@media (min-width: 200px) and (max-width: 767px) {
+  .cart_modal_container {
+    align-items: flex-end;
+    padding: 0.5rem 0.5rem 0 0.5rem;
+    .cart_modal {
+      width: 100%;
+      height: 80dvh;
+      border-radius: 1rem 1rem 0 0;
+    }
+  }
+}

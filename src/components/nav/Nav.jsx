@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./nav.css";
 import { CiShoppingCart, CiSearch } from "react-icons/ci";
 import { FaBars, FaFacebook, FaInstagram } from "react-icons/fa";
 import logo from "../../assets/logo.jpg";
+import { ShowCartContext } from "../../hooks/showCart";
 const Nav = () => {
-  const [toggle, setToggle] = useState(true);
+  const [toggle, setToggle] = useState(false);
+  const { toggleCart } = useContext(ShowCartContext);
   const showHide = () => {
     setToggle((prev) => !prev);
   };
@@ -47,7 +49,7 @@ const Nav = () => {
         </section>
         <section className="flex gap2rem nav_search_cart align_center">
           <CiSearch className="font20" />
-          <CiShoppingCart className="font20" />
+          <CiShoppingCart className="font20 pointer" onClick={toggleCart} />
         </section>
       </div>
     </nav>
