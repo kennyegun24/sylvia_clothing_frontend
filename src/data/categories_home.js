@@ -1,11 +1,11 @@
-import image1 from "../assets/bg1.jpg";
-import image2 from "../assets/bg2.jpg";
-import image3 from "../assets/bg3.jpg";
-import image4 from "../assets/bg4.jpg";
-import image5 from "../assets/bg5.jpg";
-import image6 from "../assets/rand.jpg";
-import image7 from "../assets/logo.jpg";
-import image8 from "../assets/visa_card.jpg";
+import image1 from "../assets/image11.jpg";
+import image2 from "../assets/image12.jpg";
+import image3 from "../assets/image10raw.jpg";
+import image4 from "../assets/image10.jpg";
+import image5 from "../assets/image14.jpg";
+import image6 from "../assets/img15.jpg";
+import image7 from "../assets/IMG-20231218-WA0025.jpg";
+import image8 from "../assets/image13.jpg";
 
 export const categories = [
   {
@@ -29,6 +29,8 @@ export const categories = [
         price: 85,
         in_stock: 6,
       },
+      
+      
       {
         product_image: image4,
         product_name: "Ashanti Multicolored Fabric",
