@@ -8,7 +8,7 @@ const FirstSection = () => {
         Order your high quality fabrics from us today!
       </h2>
       <p className="font16">Delivery time takes up to 4 business days</p>
-      <button className="font16 pointer">Shop based on your categories</button>
+      <button className="font16 pointer">Shop based on your collections</button>
     </section>
   );
 };

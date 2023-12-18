@@ -18,8 +18,8 @@ const Nav = () => {
             <img className="logo" src={logo} alt="" />
           </a>
 
-          <a className="font15" href="/">
-            Categories
+          <a className="font15" href="/collections">
+            Collections
           </a>
           <a className="font15" href="/">
             Products
@@ -27,15 +27,17 @@ const Nav = () => {
         </section>
         <section className="gap2rem align_center mobile_view">
           <FaBars onClick={showHide} className="font20" />
-          <img className="logo" src={logo} alt="" />
+          <a href="/">
+            <img className="logo" src={logo} alt="" />
+          </a>
         </section>
         <section
           className={` ${toggle && "show_menu"} mobile_nav_menu_container`}
         >
           <div className="flex monile_nav_menu justify_between">
             <div className="flex gap2rem column">
-              <a className="font15" href="/">
-                Categories
+              <a className="font15" href="/collections">
+                Collections
               </a>
               <a className="font15" href="/">
                 Products

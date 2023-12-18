@@ -74,6 +74,10 @@ body {
   display: var(--flex);
 }
 
+.wrap {
+  flex-wrap: wrap;
+}
+
 .column {
   flex-direction: var(--column);
 }

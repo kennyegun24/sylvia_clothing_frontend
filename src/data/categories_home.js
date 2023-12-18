@@ -9,7 +9,7 @@ import image8 from "../assets/fuguraw1.jpg";
 import image9 from "../assets/fugudress2.jpeg";
 import image10 from "../assets/kentedresslady1.jpeg";
 
-export const categories = [
+export const categories_preview = [
   {
     category_short_desc: "Kente cloth",
     categories: [
@@ -31,8 +31,6 @@ export const categories = [
         price: 85,
         in_stock: 6,
       },
-      
-      
       {
         product_image: image4,
         product_name: "Ashanti Multicolored Fabric",
@@ -94,5 +92,40 @@ export const categories = [
       },
       
     ],
+  },
+];
+
+export const categories = [
+  {
+    category_image: image1,
+    category_name: "Hollandaise Fabric",
+  },
+  {
+    category_image: image2,
+    category_name: "Ashanti People Fabric",
+  },
+  {
+    category_image: image3,
+    category_name: "Senator Fabric",
+  },
+  {
+    category_image: image4,
+    category_name: "Offwhite",
+  },
+  {
+    category_image: image5,
+    category_name: "Jean Fabric",
+  },
+  {
+    category_image: image6,
+    category_name: "Plain Color Materials",
+  },
+  {
+    category_image: image7,
+    category_name: "Tye and Dye Material",
+  },
+  {
+    category_image: image8,
+    category_name: "Local Nigerian Lace",
   },
 ];

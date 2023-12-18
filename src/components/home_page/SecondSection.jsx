@@ -42,7 +42,7 @@ const categories = [
 const SecondSection = () => {
   return (
     <div className="second_section flex column gap2rem margin_top_2rem">
-      <h3>Shop by Category</h3>
+      <h3>Shop by Collection</h3>
       <div className="categories flex gap05rem">
         {categories.map((cat, _index) => (
           <div className="category flex column pointer" key={_index}>

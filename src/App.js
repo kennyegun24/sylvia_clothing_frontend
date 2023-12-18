@@ -5,6 +5,7 @@ import Footer from "./components/footer/Footer";
 import Nav from "./components/nav/Nav";
 import { ShowCartProvider } from "./context/showCart";
 import Home from "./pages/home/Home";
+import Collections from "./pages/collections/Collections";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <div style={{ minHeight: "70vh" }}>
           <Routes>
             <Route index element={<Home />} />
+            <Route path="/collections" element={<Collections />} />
           </Routes>
         </div>
         <div className="footerDiv">
