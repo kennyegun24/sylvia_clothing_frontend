@@ -21,9 +21,7 @@ const ThirdSection = ({ data }) => {
           </div>
         ))}
       </section>
-      <button className="padding05rem view_category_btn pointer">
-        View More
-      </button>
+      <button className="view_category_btn pointer font18">View More</button>
     </div>
   );
 };

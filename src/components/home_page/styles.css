@@ -82,7 +82,7 @@
 }
 
 .third_section section::-webkit-scrollbar {
-  background: #b2d6ff;
+  background: #f5c4fb;
   height: 10px;
 }
 .third_section section::-webkit-scrollbar-thumb {
@@ -134,10 +134,28 @@
 }
 
 .third_section .view_category_btn {
-  background: #b2d6ff;
+  background: #f5c4fb;
   border: none;
   margin: 1rem auto;
   border-radius: 6px;
+  letter-spacing: 1px;
+  padding: 0.75rem 1rem;
+}
+
+.fourth_section {
+  height: 50vh;
+  background: #f5c4fb;
+}
+
+.fourth_section h2 {
+  font-size: 40px;
+}
+
+.fourth_section p {
+  font-size: 18px;
+  width: 60%;
+  line-height: 34px;
+  text-align: center;
 }
 
 @media (min-width: 200px) and (max-width: 767px) {
@@ -181,5 +199,23 @@
 
   .third_section h3 {
     font-size: 20px;
+  }
+
+  .fourth_section {
+    height: 50vh;
+    background: #f5c4fb;
+    padding-inline-start: 0.5rem;
+  }
+
+  .fourth_section h2 {
+    font-size: 30px;
+    text-align: centers;
+  }
+
+  .fourth_section p {
+    font-size: 18px;
+    line-height: 34px;
+    width: 100%;
+    text-align: center;
   }
 }

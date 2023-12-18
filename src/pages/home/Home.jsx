@@ -4,12 +4,14 @@ import FirstSection from "../../components/home_page/FirstSection";
 import SecondSection from "../../components/home_page/SecondSection";
 import ThirdSection from "../../components/home_page/ThirdSection";
 import { categories } from "../../data/categories_home";
+import FourthSection from "../../components/home_page/FourthSection";
 
 const Home = () => {
   return (
     <div>
       <FirstSection />
       <SecondSection />
+      <FourthSection />
 
       {categories.map((category, _index) => (
         <ThirdSection data={category} />
