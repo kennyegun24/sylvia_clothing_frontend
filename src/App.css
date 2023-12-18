@@ -142,12 +142,20 @@ body {
   gap: 3rem;
 }
 
+.gap4rem {
+  gap: 4rem;
+}
+
 .gap5rem {
   gap: var(--5rem);
 }
 
 .padding05rem {
   padding: var(--05rem);
+}
+
+.padding075rem {
+  padding: 0.75rem;
 }
 
 .padding1rem {
@@ -199,6 +207,10 @@ body {
 
 .margin_top_2rem {
   margin-top: 2rem;
+}
+
+.margin_top_4rem {
+  margin-top: 4rem;
 }
 
 .width100 {
