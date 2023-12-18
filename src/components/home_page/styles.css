@@ -83,7 +83,7 @@
 
 .third_section section::-webkit-scrollbar {
   background: #b2d6ff;
-  height: 5px;
+  height: 10px;
 }
 .third_section section::-webkit-scrollbar-thumb {
   background: #f3f3f3;
@@ -131,6 +131,13 @@
 
 .third_section h3 {
   font-size: 24px;
+}
+
+.third_section .view_category_btn {
+  background: #b2d6ff;
+  border: none;
+  margin: 1rem auto;
+  border-radius: 6px;
 }
 
 @media (min-width: 200px) and (max-width: 767px) {
