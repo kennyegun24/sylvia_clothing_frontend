@@ -85,6 +85,7 @@
   background: #f5c4fb;
   height: 10px;
 }
+
 .third_section section::-webkit-scrollbar-thumb {
   background: #f3f3f3;
 }
@@ -110,12 +111,14 @@
   margin-bottom: 1rem;
   object-fit: cover;
 }
+
 .slides_carousel p {
   font-size: 18px;
   padding: 0.5rem 1rem;
   text-align: start;
   letter-spacing: 1px;
 }
+
 .slides_carousel .in_stock {
   margin: auto 1rem 1rem 1rem;
   border-radius: 6px;

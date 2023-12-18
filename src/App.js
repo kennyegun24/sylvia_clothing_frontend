@@ -6,6 +6,7 @@ import Nav from "./components/nav/Nav";
 import { ShowCartProvider } from "./context/showCart";
 import Home from "./pages/home/Home";
 import Collections from "./pages/collections/Collections";
+import CollectionProducts from "./pages/collections/CollectionProducts/CollectionProducts";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path="/collections" element={<Collections />} />
+            <Route path="/collections/:id" element={<CollectionProducts />} />
           </Routes>
         </div>
         <div className="footerDiv">
