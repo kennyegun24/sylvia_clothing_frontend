@@ -2,12 +2,18 @@ import React from "react";
 import "./home.css";
 import FirstSection from "../../components/home_page/FirstSection";
 import SecondSection from "../../components/home_page/SecondSection";
+import ThirdSection from "../../components/home_page/ThirdSection";
+import { categories } from "../../data/categories_home";
 
 const Home = () => {
   return (
     <div>
       <FirstSection />
       <SecondSection />
+
+      {categories.map((category, _index) => (
+        <ThirdSection data={category} />
+      ))}
     </div>
   );
 };
