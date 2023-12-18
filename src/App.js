@@ -5,7 +5,7 @@ import Footer from "./components/footer/Footer";
 import Nav from "./components/nav/Nav";
 import { ShowCartProvider } from "./context/showCart";
 import Home from "./pages/home/Home";
-import Collections from "./pages/Collections";
+import Collections from "./pages/collections/Collections";
 
 function App() {
   return (

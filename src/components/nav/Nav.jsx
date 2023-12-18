@@ -36,7 +36,7 @@ const Nav = () => {
         >
           <div className="flex monile_nav_menu justify_between">
             <div className="flex gap2rem column">
-              <a className="font15" href="/">
+              <a className="font15" href="/collections">
                 Collections
               </a>
               <a className="font15" href="/">

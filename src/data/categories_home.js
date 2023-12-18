@@ -7,7 +7,7 @@ import image6 from "../assets/img15.jpg";
 import image7 from "../assets/IMG-20231218-WA0025.jpg";
 import image8 from "../assets/image13.jpg";
 
-export const categories = [
+export const categories_preview = [
   {
     category_short_desc: "Ashanti Beautiful Fabrics",
     categories: [
@@ -29,8 +29,6 @@ export const categories = [
         price: 85,
         in_stock: 6,
       },
-      
-      
       {
         product_image: image4,
         product_name: "Ashanti Multicolored Fabric",
@@ -79,5 +77,40 @@ export const categories = [
         in_stock: 12,
       },
     ],
+  },
+];
+
+export const categories = [
+  {
+    category_image: image1,
+    category_name: "Hollandaise Fabric",
+  },
+  {
+    category_image: image2,
+    category_name: "Ashanti People Fabric",
+  },
+  {
+    category_image: image3,
+    category_name: "Senator Fabric",
+  },
+  {
+    category_image: image4,
+    category_name: "Offwhite",
+  },
+  {
+    category_image: image5,
+    category_name: "Jean Fabric",
+  },
+  {
+    category_image: image6,
+    category_name: "Plain Color Materials",
+  },
+  {
+    category_image: image7,
+    category_name: "Tye and Dye Material",
+  },
+  {
+    category_image: image8,
+    category_name: "Local Nigerian Lace",
   },
 ];

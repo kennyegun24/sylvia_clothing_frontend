@@ -11,7 +11,7 @@ const Footer = () => {
             <h2>Quick Links</h2>
             <div className="flex column gap1rem">
               <a href="/">Products</a>
-              <a href="/">Categories</a>
+              <a href="/collections">Collections</a>
               <a href="/">Cart</a>
             </div>
           </section>
