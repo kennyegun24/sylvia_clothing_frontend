@@ -1,8 +1,8 @@
 import React from "react";
-import image1 from "../../assets/bg5.jpg";
-import image2 from "../../assets/bg3.jpg";
-import image3 from "../../assets/rand.jpg";
-import image4 from "../../assets/no_image.jpg";
+import image1 from "../../assets/IMG-20231214-WA0057.jpg";
+import image2 from "../../assets/IMG-20231214-WA0050.jpg";
+import image3 from "../../assets/img15.jpg";
+import image4 from "../../assets/img15raw.jpg";
 
 const categories = [
   {
