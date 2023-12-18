@@ -2,14 +2,14 @@ import React from "react";
 
 const ThirdSection = ({ data }) => {
   return (
-    <div className="margin_top_2rem third_section flex column align_center">
+    <div className=" margin_top_2rem third_section flex column align_center">
       <h3 className="fontW700 width100">{data.category_short_desc}</h3>
       <section className="flex gap1rem margin_top_1rem">
         {data.categories.map((cat, _index) => (
           <div className="slides_carousel flex column">
             <img src={cat.product_image} alt="" />
             <p className="fontW700">{cat.product_name}</p>
-            <p>${cat.price}</p>
+            <p>₵{cat.price}</p>
             <p>{cat.in_stock} in stock</p>
             <button
               className={`padding05rem ${
