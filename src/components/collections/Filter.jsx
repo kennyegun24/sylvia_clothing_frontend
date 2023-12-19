@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./styles.css";
 import { IoIosArrowDown } from "react-icons/io";
+import { ShowCartContext } from "../../context/showCart";
 
 const Filter = () => {
   const [show, setShow] = useState(false);
+  const { toggleFilter } = useContext(ShowCartContext);
   return (
     <div className="filter_container flex column gap1rem">
+      <div className="cancel cancel_filter_display">
+        <button onClick={toggleFilter}>close</button>
+      </div>
       <p>Filter</p>
 
       <section className="flex column gap2rem">

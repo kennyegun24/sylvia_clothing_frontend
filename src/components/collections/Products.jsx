@@ -1,13 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { categories, categories_preview } from "../../data/categories_home";
-
+import { CiFilter } from "react-icons/ci";
+import { ShowCartContext } from "../../context/showCart";
 const Products = () => {
+  const { toggleFilter } = useContext(ShowCartContext);
   return (
     <div>
       <div className="category_product_container flex column align_center">
-        <p className="category_product_header">
-          {categories_preview[0].categories.length} products
-        </p>
+        <div className="category_product_header flex gap1rem align_center">
+          <p className="">{categories_preview[0].categories.length} products</p>
+          <p className="flex gap05rem mobile_filter" onClick={toggleFilter}>
+            Filter
+            <CiFilter />
+          </p>
+        </div>
         <section className="flex gap05rem margin_top_1rem wrap">
           {categories_preview[0].categories.map((cat, _index) => (
             <div className="collection_prod flex column">
