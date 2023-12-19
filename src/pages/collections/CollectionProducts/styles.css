@@ -9,3 +9,32 @@
 .collecion_products_div2 {
   width: 70%;
 }
+
+.collecion_products_div1_mobile_filter {
+  display: none;
+}
+
+@media (min-width: 200px) and (max-width: 767px) {
+  .collecion_products_page {
+    padding: 0.5rem;
+  }
+
+  .collecion_products_div1 {
+    display: block;
+    width: 100%;
+    position: fixed;
+    height: 100%;
+    top: 0;
+    right: -100%;
+    background: rgba(0, 0, 0, 0.8);
+    transition: 0.3s ease-in-out;
+  }
+
+  .collecion_products_div1_mobile_filter {
+    right: 0;
+  }
+
+  .collecion_products_div2 {
+    width: 100%;
+  }
+}

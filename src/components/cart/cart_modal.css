@@ -8,6 +8,7 @@
   padding: 0.5rem;
   right: -100%;
   transition: 0.2s ease-in-out;
+  z-index: 99999;
 
   .cart_modal {
     width: 30%;
