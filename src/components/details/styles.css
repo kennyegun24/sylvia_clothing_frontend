@@ -15,6 +15,8 @@
   aspect-ratio: 1/1;
   object-fit: cover;
   border-radius: 8px;
+  position: sticky;
+  top: 12vh;
 }
 
 .product_details_desc_div > h1 {
@@ -88,4 +90,27 @@
 .product_description_drowdown > section > p {
   white-space: pre-line;
   letter-spacing: 1.5px;
+}
+
+@media (min-width: 200px) and (max-width: 767px) {
+  .product_details {
+    padding: 1rem;
+    flex-direction: column;
+  }
+
+  .product_details_img_div {
+    width: 100%;
+  }
+
+  .product_details_desc_div {
+    width: 100%;
+  }
+
+  .product_details_desc_div > h1 {
+    font-size: 32px;
+  }
+
+  .product_details_description_div {
+    line-height: 30px;
+  }
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./styles.css";
 import image from "../../assets/IMG-20231214-WA0050.jpg";
-import { IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { GiReturnArrow } from "react-icons/gi";
 
@@ -34,14 +34,17 @@ const ProductDetails = () => {
           <div className="flex gap2rem column product_description_drowdown">
             <section className="width100 flex column gap1rem">
               <div
-                onClick={() => setTriggerDelivery((prev) => !prev)}
+                onClick={() => [
+                  setTriggerDelivery((prev) => !prev),
+                  setTriggerReturn(false),
+                ]}
                 className="flex justify_between width100"
               >
                 <h3 className="font18 flex align_center gap05rem">
                   <CiDeliveryTruck />
                   Shipping Info
                 </h3>
-                <IoIosArrowDown />
+                {triggerDelivery ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </div>
               {triggerDelivery && (
                 <p>
@@ -82,14 +85,17 @@ const ProductDetails = () => {
             </section>
             <section className="width100 flex column gap1rem">
               <div
-                onClick={() => setTriggerReturn((prev) => !prev)}
+                onClick={() => [
+                  setTriggerReturn((prev) => !prev),
+                  setTriggerDelivery(false),
+                ]}
                 className="flex justify_between width100"
               >
                 <h3 className="font18 flex align_center gap05rem">
                   <GiReturnArrow />
                   Returns Policy
                 </h3>
-                <IoIosArrowDown />
+                {TriggerReturn ? <IoIosArrowUp /> : <IoIosArrowDown />}
               </div>
               {TriggerReturn && (
                 <p>
