@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
-import { categories, categories_preview } from "../../data/categories_home";
+import { categories_preview } from "../../data/categories_home";
 import { CiFilter } from "react-icons/ci";
 import { ShowCartContext } from "../../context/showCart";
+import { Link } from "react-router-dom";
+import ProductCard from "../items/ProductCard";
 const Products = () => {
   const { toggleFilter } = useContext(ShowCartContext);
   return (
@@ -16,19 +18,12 @@ const Products = () => {
         </div>
         <section className="flex gap05rem margin_top_1rem wrap">
           {categories_preview[0].categories.map((cat, _index) => (
-            <div className="collection_prod flex column">
-              <img src={cat.product_image} alt="" />
-              <p className="fontW700">{cat.product_name}</p>
-              <p>${cat.price}</p>
-              <p>{cat.in_stock} in stock</p>
-              <button
-                className={`padding05rem ${
-                  cat.in_stock > 0 ? "in_stock" : "out_stock"
-                }`}
-              >
-                {cat.in_stock > 0 ? "Add to cart" : "Out of stock"}
-              </button>
-            </div>
+            <Link
+              className="collection_prod flex column product_card"
+              to={`${cat.product_name}`}
+            >
+              <ProductCard cat={cat} />
+            </Link>
           ))}
         </section>
       </div>

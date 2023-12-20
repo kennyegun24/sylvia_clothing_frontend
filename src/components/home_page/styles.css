@@ -99,41 +99,12 @@
 }
 
 .slides_carousel {
-  background: #f3f3f3;
   width: 250px;
-  height: 500px;
 }
 
 .slides_carousel img {
   height: 250px;
   width: 250px;
-  border-radius: 8px 8px 0 0;
-  margin-bottom: 1rem;
-  object-fit: cover;
-}
-
-.slides_carousel p {
-  font-size: 18px;
-  padding: 0.5rem 1rem;
-  text-align: start;
-  letter-spacing: 1px;
-}
-
-.slides_carousel .in_stock {
-  margin: auto 1rem 1rem 1rem;
-  border-radius: 6px;
-  border: 1px solid #000000;
-}
-
-.slides_carousel .out_stock {
-  margin: auto 1rem 1rem 1rem;
-  color: #6b6b6b;
-  border-radius: 6px;
-  border: 1px solid #6b6b6b;
-}
-
-.third_section h3 {
-  font-size: 24px;
 }
 
 .third_section .view_category_btn {

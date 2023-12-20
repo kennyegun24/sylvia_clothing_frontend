@@ -10,6 +10,7 @@ import image8 from "../assets/image13.jpg";
 export const categories_preview = [
   {
     category_short_desc: "Ashanti Beautiful Fabrics",
+    category_name: "Ashanti Fabrics",
     categories: [
       {
         product_image: image1,
@@ -51,6 +52,7 @@ export const categories_preview = [
   },
   {
     category_short_desc: "Hollandise has never looked better",
+    category_name: "Hollandise Fabrics",
     categories: [
       {
         product_image: image4,
