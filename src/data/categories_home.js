@@ -12,6 +12,7 @@ import image10 from "../assets/kentedresslady1.jpeg";
 export const categories_preview = [
   {
     category_short_desc: "Kente cloth",
+    category_name: "Kente cloth",
     categories: [
       {
         product_image: image10,
@@ -53,6 +54,7 @@ export const categories_preview = [
   },
   {
     category_short_desc: "Fugu Fabric ",
+    category_name: "Fugu cloth",
     categories: [
       {
         product_image: image1,
@@ -90,7 +92,6 @@ export const categories_preview = [
         price: 34,
         in_stock: 12,
       },
-      
     ],
   },
 ];

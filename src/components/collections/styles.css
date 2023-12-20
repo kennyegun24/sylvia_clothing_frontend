@@ -87,8 +87,13 @@
 }
 
 @media (min-width: 200px) and (max-width: 767px) {
-  .collection_prod {
+  .product_card {
     width: calc((100% - 1rem) / 2);
+    height: 450px;
+  }
+
+  .product_card img {
+    height: 200px;
   }
 
   .filter_container {
