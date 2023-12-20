@@ -7,6 +7,7 @@ import { ShowCartProvider } from "./context/showCart";
 import Home from "./pages/home/Home";
 import Collections from "./pages/collections/Collections";
 import CollectionProducts from "./pages/collections/CollectionProducts/CollectionProducts";
+import Product from "./pages/Product";
 
 function App() {
   return (
@@ -18,7 +19,8 @@ function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path="/collections" element={<Collections />} />
-            <Route path="/collections/:id" element={<CollectionProducts />} />
+            <Route path="/collections/:name" element={<CollectionProducts />} />
+            <Route path="/collections/:name/:product" element={<Product />} />
           </Routes>
         </div>
         <div className="footerDiv">

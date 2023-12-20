@@ -100,9 +100,7 @@
 }
 
 .slides_carousel {
-  background: #f3f3f3;
   width: 250px;
-  height: 500px;
 }
 
 .slides_carousel img {
@@ -135,7 +133,6 @@
 
 .third_section h3 {
   font-size: 24px;
-  margin-left: 5rem;
 }
 
 .third_section .view_category_btn {
