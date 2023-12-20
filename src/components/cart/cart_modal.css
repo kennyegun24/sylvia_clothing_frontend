@@ -19,7 +19,7 @@
     padding: 0 0 1rem 0;
 
     .card_header {
-      background: #b2d6ff;
+      background: #e6abf5;
       /* background: #eebec0; */
       text-align: center;
       position: sticky;
@@ -74,7 +74,7 @@
     }
     .checkout_btn {
       border: none;
-      background: #b2d6ff;
+      background: #e6abf5;
       /* background: #eebec0; */
     }
     .visa_mastarcard {
@@ -95,7 +95,7 @@
     padding: 0.5rem 0.5rem 0 0.5rem;
     .cart_modal {
       width: 100%;
-      height: 80dvh;
+      height: 80vh;
       border-radius: 1rem 1rem 0 0;
     }
   }
