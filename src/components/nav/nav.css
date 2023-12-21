@@ -36,6 +36,18 @@
   padding: 0.2rem;
 }
 
+.login_btn {
+  background: #eb9df5;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+}
+
+.login_btn:hover {
+  background: #fff;
+  border: 1px solid #eb9df5;
+  padding: 0.4rem 0.95rem;
+}
+
 @media (min-width: 200px) and (max-width: 767px) {
   .nav_container {
     position: sticky;
@@ -82,5 +94,13 @@
     height: 30px;
     width: 100px;
     object-fit: contain;
+  }
+
+  .desktop_navs {
+    display: none;
+  }
+
+  .nav_search_cart {
+    gap: 1.5rem;
   }
 }

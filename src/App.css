@@ -263,6 +263,10 @@ a {
   text-decoration: none;
 }
 
+.text_decoration_none {
+  text-decoration: none;
+}
+
 .app {
   min-height: 100vh;
 }

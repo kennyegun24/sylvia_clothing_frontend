@@ -17,13 +17,6 @@ const Nav = () => {
           <a href="/">
             <img className="logo" src={logo} alt="" />
           </a>
-
-          <a className="font15" href="/collections">
-            Collections
-          </a>
-          <a className="font15" href="/">
-            Products
-          </a>
         </section>
         <section className="gap2rem align_center mobile_view">
           <FaBars onClick={showHide} className="font20" />
@@ -50,8 +43,17 @@ const Nav = () => {
           </div>
         </section>
         <section className="flex gap2rem nav_search_cart align_center">
+          <a className="font15 desktop_navs" href="/collections">
+            Collections
+          </a>
+          <a className="font15 desktop_navs" href="/">
+            Products
+          </a>
           <CiSearch className="font20" />
           <CiShoppingCart className="font20 pointer" onClick={toggleCart} />
+          <a className="font15 login_btn" href="/login">
+            Login
+          </a>
         </section>
       </div>
     </nav>

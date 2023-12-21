@@ -9,6 +9,7 @@ import { FaPlus } from "react-icons/fa6";
 import { SiVisa } from "react-icons/si";
 import { FaCcMastercard } from "react-icons/fa";
 import { ShowCartContext } from "../../context/showCart";
+import { Link } from "react-router-dom";
 
 const _mock_items = [
   {
@@ -102,9 +103,13 @@ const CartModal = () => {
           <h3>Subtotal</h3>
           <p className="fontW700">$72653</p>
         </section>
-        <button className="checkout_btn fontW700 font20 width90 padding05rem">
+        <Link
+          to={"/cart/checkout"}
+          onClick={toggleCart}
+          className="text_decoration_none black_text pointer checkout_btn fontW700 font20 width90 padding05rem flex justify_center"
+        >
           Checkout
-        </button>
+        </Link>
         <p className="font14 textCenter margin_top_1rem">
           Guarantee Safe & Secure Checkout with Stripe Payment Gateway
         </p>
