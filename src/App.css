@@ -162,8 +162,16 @@ body {
   padding: var(--1rem);
 }
 
-.padding1rem {
+.padding08rem {
+  padding: 0.8rem;
+}
+
+.padding15rem {
   padding: var(--15rem);
+}
+
+.padding2rem {
+  padding: 2rem;
 }
 
 .padding15rem {
@@ -197,6 +205,10 @@ body {
   padding: var(--3rem);
 }
 
+.padding5rem {
+  padding: 5rem;
+}
+
 .padding2 {
   padding: var(--2);
 }
@@ -219,6 +231,22 @@ body {
 
 .width90 {
   width: 90%;
+}
+
+.width60 {
+  width: 60%;
+}
+
+.width45 {
+  width: 45%;
+}
+
+.width40 {
+  width: 40%;
+}
+
+.width30 {
+  width: 30%;
 }
 
 .font10 {
