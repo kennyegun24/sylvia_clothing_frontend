@@ -3,9 +3,11 @@ import CustomInputs from "./CustomInputs";
 import "./styles.css";
 import PaymentOptions from "./PaymentOptions";
 import { Link } from "react-router-dom";
+// import { PaymentElement } from "@stripe/react-stripe-js";
 const PaymentDetailsForm = () => {
   return (
     <div className="flex column gap3rem width100">
+      {/* <PaymentElement /> */}
       <section className="flex column gap1rem">
         <h2>Contact</h2>
         <CustomInputs
