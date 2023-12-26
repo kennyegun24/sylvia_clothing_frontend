@@ -2,12 +2,9 @@ import React from "react";
 import CustomInputs from "./CustomInputs";
 import "./styles.css";
 import PaymentOptions from "./PaymentOptions";
-import { Link } from "react-router-dom";
-// import { PaymentElement } from "@stripe/react-stripe-js";
-const PaymentDetailsForm = () => {
+const PaymentDetailsForm = ({ makePayment }) => {
   return (
     <div className="flex column gap3rem width100">
-      {/* <PaymentElement /> */}
       <section className="flex column gap1rem">
         <h2>Contact</h2>
         <CustomInputs
@@ -94,9 +91,12 @@ const PaymentDetailsForm = () => {
           <p className="font16">All transactions are secure and encrypted.</p>
           <PaymentOptions />
         </div>
-        <Link to={""} className="pay_now_btn flex justify_center">
+        <button
+          onClick={makePayment}
+          className="pay_now_btn flex justify_center"
+        >
           Pay Now
-        </Link>
+        </button>
       </section>
     </div>
   );
