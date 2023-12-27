@@ -93,7 +93,7 @@ const PaymentDetailsForm = ({ makePayment }) => {
         </div>
         <button
           onClick={makePayment}
-          className="pay_now_btn flex justify_center"
+          className="pay_now_btn flex justify_center pointer"
         >
           Pay Now
         </button>

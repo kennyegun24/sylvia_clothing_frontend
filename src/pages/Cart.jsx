@@ -82,10 +82,10 @@ const Cart = () => {
   };
   return (
     <div className="flex justify_between cart_checkout_div">
-      <div className="width60 padding2rem">
+      <div className="padding2rem">
         <PaymentDetailsForm makePayment={make_payment} />
       </div>
-      <div className="width40 padding2rem">
+      <div className="padding2rem">
         <CartDetails />
       </div>
     </div>
