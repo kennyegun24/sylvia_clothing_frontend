@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./cart_modal.css";
 import { IoClose } from "react-icons/io5";
 import image1 from "../../assets/no-search.png";
@@ -16,51 +16,73 @@ const _mock_items = [
     product_image: image1,
     price: 476,
     product_name: "Anti Tear Vinyl Bottle SkyBlue",
+    quantity: 8,
   },
   {
     product_image: image2,
     price: 129,
     product_name: "Anti Tear Vinyl Bottle Green",
+    quantity: 2,
   },
   {
     product_image: image3,
     price: 745,
     product_name: "ASHANTI Golden green material",
+    quantity: 3,
   },
   {
     product_image: image1,
     price: 476,
     product_name: "Anti Tear Vinyl Bottle SkyBlue",
+    quantity: 1,
   },
   {
     product_image: image2,
     price: 129,
     product_name: "Anti Tear Vinyl Bottle Green",
+    quantity: 7,
   },
   {
     product_image: image3,
     price: 745,
     product_name: "ASHANTI Golden green material",
+    quantity: 5,
   },
   {
     product_image: image1,
     price: 476,
     product_name: "Anti Tear Vinyl Bottle SkyBlue",
+    quantity: 2,
   },
   {
     product_image: image2,
     price: 129,
     product_name: "Anti Tear Vinyl Bottle Green",
+    quantity: 1,
   },
   {
     product_image: image3,
     price: 745,
     product_name: "ASHANTI Golden green material",
+    quantity: 1,
   },
 ];
 const CartModal = () => {
   const { showCart, toggleCart } = useContext(ShowCartContext);
-  console.log(showCart);
+  const [items, setItems] = useState(_mock_items);
+
+  const increaseQuantity = (index) => {
+    const updated_values = [...items];
+    updated_values[index].quantity += 1;
+    setItems(updated_values);
+  };
+
+  const reduceQuantity = (index) => {
+    const updated_values = [...items];
+    updated_values[index].quantity -= 1;
+    setItems(updated_values);
+  };
+
   return (
     <section className={`cart_modal_container ${showCart && "show_cart"} `}>
       <div className="cart_modal flex column align_center">
@@ -73,7 +95,7 @@ const CartModal = () => {
         </section>
         <hr />
         <section className="cart_items flex column width100 gap15rem">
-          {_mock_items.map((item, index) => (
+          {items.map((item, _index) => (
             <section className="cart_item flex gap1rem">
               <img src={item.product_image} className="cart_image" alt="" />
               <div className="flex column justify_between width100">
@@ -89,9 +111,18 @@ const CartModal = () => {
                   </p>
 
                   <div className="cart_add_reduce_div flex align_center">
-                    <RiSubtractFill className="pointer cart_reduce" />
-                    <p>0</p>
-                    <FaPlus className="pointer cart_add" />
+                    <RiSubtractFill
+                      onClick={() =>
+                        item.quantity > 1 && reduceQuantity(_index)
+                      }
+                      className="pointer cart_reduce"
+                      // disabled={item.quantity <= 1}
+                    />
+                    <p>{item.quantity}</p>
+                    <FaPlus
+                      onClick={() => increaseQuantity(_index)}
+                      className="pointer cart_add"
+                    />
                   </div>
                 </div>
               </div>

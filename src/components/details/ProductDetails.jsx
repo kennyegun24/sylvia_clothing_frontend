@@ -8,6 +8,7 @@ import { GiReturnArrow } from "react-icons/gi";
 const ProductDetails = () => {
   const [triggerDelivery, setTriggerDelivery] = useState(false);
   const [TriggerReturn, setTriggerReturn] = useState(false);
+  const [quantity, setQuantity] = useState(1);
   return (
     <div className="flex gap2rem justify_between column">
       <div className="flex gap1rem justify_between product_details">
@@ -21,9 +22,20 @@ const ProductDetails = () => {
           <section className="flex column gap1rem product_details_quantity_div">
             <h5>Quantity</h5>
             <div className="flex product_details_quantity_button_div align_center justify_between">
-              <button className="pointer">-</button>
-              <p>1</p>
-              <button className="pointer">+</button>
+              <button
+                className="pointer"
+                onClick={() => setQuantity((prev) => (prev -= 1))}
+                disabled={quantity === 1}
+              >
+                -
+              </button>
+              <p>{quantity}</p>
+              <button
+                className="pointer"
+                onClick={() => setQuantity((prev) => (prev += 1))}
+              >
+                +
+              </button>
             </div>
           </section>
           <p className="font16 fontW700">
