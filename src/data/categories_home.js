@@ -11,8 +11,8 @@ import image10 from "../assets/kentedresslady1.jpeg";
 
 export const categories_preview = [
   {
-    category_short_desc: "Kente cloth",
-    category_name: "Kente cloth",
+    category_short_desc: "Best Selling",
+    category_name: "Best Selling",
     categories: [
       {
         product_image: image10,
@@ -59,8 +59,56 @@ export const categories_preview = [
     ],
   },
   {
-    category_short_desc: "Fugu Fabric ",
-    category_name: "Fugu cloth",
+    category_short_desc: "New Arrivals",
+    category_name: "New Arrivals",
+    categories: [
+      {
+        product_image: image10,
+        product_name: "Ashanti Multicolored Fabric",
+        price: 576,
+        in_stock: 0,
+        quantity: 1,
+      },
+      {
+        product_image: image5,
+        product_name: "Ashanti Blue Fabrics",
+        price: 221,
+        in_stock: 15,
+        quantity: 2,
+      },
+      {
+        product_image: image7,
+        product_name: "Ashanti Green Fabrics",
+        price: 85,
+        in_stock: 6,
+        quantity: 2,
+      },
+      {
+        product_image: image4,
+        product_name: "Ashanti Multicolored Fabric",
+        price: 576,
+        in_stock: 0,
+        quantity: 5,
+      },
+      {
+        product_image: image3,
+        product_name: "Ashanti Blue Fabrics",
+        price: 745,
+        in_stock: 15,
+        quantity: 3,
+      },
+      {
+        product_image: image2,
+        product_name: "Ashanti Green Fabrics",
+        price: 46,
+        in_stock: 6,
+        quantity: 2,
+      },
+    ],
+  },
+  {
+    category_short_desc: "Top Rated ",
+    category_name: "Top Rated",
     categories: [
       {
         product_image: image1,

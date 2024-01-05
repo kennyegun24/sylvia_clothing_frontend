@@ -13,7 +13,7 @@ const Home = () => {
       <SecondSection />
       <FourthSection />
 
-      {categories_preview.map((category, _index) => (
+      {categories_preview.slice(1, 3).map((category, _index) => (
         <ThirdSection data={category} />
       ))}
     </div>

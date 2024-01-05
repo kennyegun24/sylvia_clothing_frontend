@@ -3,7 +3,7 @@
   border-bottom: 1px solid #edecec;
   position: sticky;
   top: 0;
-  z-index: 9999;
+  z-index: 99999;
   .footer_sub_container {
     width: 70%;
     padding: 1.2rem 0;
@@ -13,10 +13,14 @@
         font-size: 20px;
       }
     }
-    a {
+    a,
+    button {
       color: #111;
+      border: none;
+      background: transparent;
     }
-    a:hover {
+    a:hover,
+    button:hover {
       color: #eebec0;
     }
     .mobile_view {
@@ -31,7 +35,6 @@
 .logo {
   height: 30px;
   width: 150px;
-  /* object-fit: contain; */
   border: 2px solid #eb9df5;
   padding: 0.2rem;
 }
@@ -48,7 +51,26 @@
   padding: 0.4rem 0.95rem;
 }
 
+.collections_hover_div {
+  position: absolute;
+  left: 0;
+  top: 5vh;
+  min-width: 350px;
+  background: #f4f4f4;
+  padding: 2rem 1rem;
+  border-radius: 0.5rem;
+  min-height: 100%;
+
+  a {
+    color: #111;
+    font-size: 14px;
+  }
+}
+
 @media (min-width: 200px) and (max-width: 767px) {
+  .collections_hover_div {
+    display: none;
+  }
   .nav_container {
     position: sticky;
     top: 0;

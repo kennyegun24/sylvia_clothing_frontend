@@ -15,6 +15,10 @@ const PaymentOptions = () => {
         <p className="textCenter">
           After clicking “Pay now”, you will be redirected to Stripe to complete
           your purchase securely.
+          <br />
+          <br />
+          IMPORTANT: Make sure you use thesame EMAIL ADDRESS and NAME YOU FILLED
+          IN THE FORM to make payment
         </p>
       </section>
     </div>

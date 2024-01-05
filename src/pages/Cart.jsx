@@ -10,74 +10,48 @@ const Cart = () => {
     "pk_test_51N1y0eFGKykGLNp48Ark1rAlHzEzCLLI8YBGbxbsZDleQ4pOgS0EyDwTwlMpLVop20Wb2u6GryVPkeg8x46G6HUv001pDGfaKH";
   const products = [
     {
-      product_image:
-        "https://res.cloudinary.com/drfqge33t/image/upload/v1697414755/person3_ktvcwi.jpg",
-      product_name: "Ashanti Multicolored Fabric",
-      price: 576,
-      in_stock: 0,
+      id: "6595ef2ad58b712b93d3c0be",
       quantity: 1,
     },
     {
-      product_image:
-        "https://res.cloudinary.com/drfqge33t/image/upload/v1697414753/person1_f9amhm.jpg",
-      product_name: "Ashanti Blue Fabrics",
-      price: 221,
-      in_stock: 15,
+      id: "6596813bc249d3c1b6b470f1",
       quantity: 2,
     },
     {
-      product_image:
-        "https://res.cloudinary.com/drfqge33t/image/upload/v1697414755/person3_ktvcwi.jpg",
-      product_name: "Ashanti Green Fabrics",
-      price: 85,
-      in_stock: 6,
+      id: "6596866ad4c87ac513edef6e",
       quantity: 2,
     },
     {
-      product_image:
-        "https://res.cloudinary.com/drfqge33t/image/upload/v1696797490/asset21_mrhqou.jpg",
-      product_name: "Ashanti Multicolored Fabric",
-      price: 576,
-      in_stock: 0,
+      id: "65970a32dcea060ab9661b12",
       quantity: 5,
-    },
-    {
-      product_image:
-        "https://res.cloudinary.com/drfqge33t/image/upload/v1696797486/asset19_llm6fd.jpg",
-      product_name: "Ashanti Blue Fabrics",
-      price: 745,
-      in_stock: 15,
-      quantity: 3,
-    },
-    {
-      product_image:
-        "https://res.cloudinary.com/drfqge33t/image/upload/v1696797480/asset10_b7dcy1.jpg",
-      product_name: "Ashanti Green Fabrics",
-      price: 46,
-      in_stock: 6,
-      quantity: 2,
     },
   ];
   const make_payment = async () => {
     const stripe_promise = await loadStripe(pub_key);
     const body = { products: products };
 
-    const req = await fetch("http://localhost:4000/create-checkout-session", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
+    try {
+      const req = await fetch(
+        "http://localhost:4000/api/payment/create-checkout-session",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(body),
+        }
+      );
 
-    const session = await req.json();
-    console.log(session.id);
-    const result = stripe_promise.redirectToCheckout({
-      sessionId: session.id,
-    });
+      const session = await req.json();
+      const result = stripe_promise.redirectToCheckout({
+        sessionId: session.id,
+      });
 
-    if ((await result).error) {
-      console.log((await result).error);
+      if ((await result).error) {
+        console.log((await result).error);
+      }
+    } catch (error) {
+      alert("Somethign went wrong");
     }
   };
   return (

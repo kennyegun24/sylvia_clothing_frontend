@@ -67,14 +67,14 @@
   border-radius: 0 0 8px 8px;
 }
 
-.second_section .category:hover img {
+/* .second_section .category:hover img {
   transform: scale(1.05);
   transition: 0.4s ease-in-out;
 }
 .second_section .category:hover p {
   text-decoration: underline;
   transition: 0.4s ease-in-out;
-}
+} */
 
 .third_section {
   width: 100%;
