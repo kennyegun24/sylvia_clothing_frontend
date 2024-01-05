@@ -1,0 +1,40 @@
+.payment_success_div {
+  display: flex;
+  flex: 1;
+  height: 70vh;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.payment_success_div > div {
+  background-color: #fff;
+  min-width: 25%;
+  border-radius: 8px;
+}
+
+.success_icon_div {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+
+.success_icon {
+  font-size: 24px;
+  color: #fff;
+}
+
+.payment_success_div h3 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.payment_success_div p {
+  font-size: 12px;
+}
+
+.payment_success_div .redirect {
+  border-radius: 1rem;
+  border: none;
+  color: #fff;
+}
