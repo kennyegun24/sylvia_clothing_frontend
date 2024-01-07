@@ -11,10 +11,8 @@ export const getAllProducts = createAsyncThunk(
 );
 
 // one product
-export const getOneProduct = createAsyncThunk("products/1", async () => {
-  const res = await fetch(
-    `http://localhost:4000/api/product/all?category=${true}`
-  );
+export const getOneProduct = createAsyncThunk("products/1", async (id) => {
+  const res = await fetch(`http://localhost:4000/api/product/${id}`);
   const data = await res.json();
   return data;
 });

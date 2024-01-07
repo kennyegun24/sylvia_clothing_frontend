@@ -15,7 +15,7 @@ const Nav = () => {
   };
   const [showCollections, setShowCollections] = useState(false);
   return (
-    <div className="flex column sticky gap1rem">
+    <div className="flex column sticky gap1rem big_nav_container">
       <nav className="nav_container flex justify_center">
         <div className="footer_sub_container flex justify_between align_center">
           <section className="flex gap2rem align_center nav_menu">

@@ -7,7 +7,7 @@ const CategoriesHover = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (!categories) dispatch(getAllCategories());
+    if (categories.length < 1) dispatch(getAllCategories());
   }, []);
   return (
     <div className="collections_hover_div flex column gap1rem">
@@ -21,7 +21,11 @@ const CategoriesHover = () => {
           const split = cat.slice(1);
           const firstLetter = cat.substring(0, 1).toUpperCase();
           const word = firstLetter + split;
-          return <a href="/">{word}</a>;
+          return (
+            <a href={`/collections/${cat}`} key={_index}>
+              {word}
+            </a>
+          );
         })}
       </div>
     </div>

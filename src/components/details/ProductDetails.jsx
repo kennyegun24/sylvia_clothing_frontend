@@ -1,23 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 import image from "../../assets/IMG-20231214-WA0050.jpg";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { GiReturnArrow } from "react-icons/gi";
+import { useDispatch, useSelector } from "react-redux";
+import { getOneProduct } from "../../redux/products";
 
 const ProductDetails = () => {
   const [triggerDelivery, setTriggerDelivery] = useState(false);
   const [TriggerReturn, setTriggerReturn] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const { product } = useSelector((state) => state.products);
+  const dispatch = useDispatch();
+  const id = window.location.pathname.split("/")[4];
+
+  useEffect(() => {
+    dispatch(getOneProduct(id));
+  }, []);
   return (
     <div className="flex gap2rem justify_between column">
       <div className="flex gap1rem justify_between product_details">
         <section className="product_details_img_div">
-          <img src={image} alt="" />
+          <img src={product?.product_image} alt="" />
         </section>
         <section className="product_details_desc_div flex gap15rem column">
-          <h1>Beautiful Ashanti People Fabric</h1>
-          <h5 className="font20">$45.33</h5>
+          <h1>{product?.product_name}</h1>
+          <h5 className="font20">${product?.price}</h5>
 
           <section className="flex column gap1rem product_details_quantity_div">
             <h5>Quantity</h5>
@@ -39,7 +48,7 @@ const ProductDetails = () => {
             </div>
           </section>
           <p className="font16 fontW700">
-            There are currently 10 products in stock
+            There are currently {product.in_stock} products in stock
           </p>
           <button className="pointer">Add to cart</button>
 
@@ -151,27 +160,7 @@ const ProductDetails = () => {
       </div>
       <div className="flex column gap1rem product_details_description_div">
         <h3>Description</h3>
-        <p className="font20 ">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam,
-          adipisci porro. Sint veniam esse iure mollitia repellat nobis!
-          Provident aliquam reiciendis totam veritatis esse, earum ab
-          voluptatibus similique veniam quos. Lorem ipsum dolor sit amet
-          consectetur adipisicing elit. Nesciunt maiores saepe dolorem tempora
-          minus, numquam nulla excepturi, ipsa nobis culpa, impedit asperiores
-          molestiae ullam animi adipisci neque qui quo maxime.
-          {"\n"}
-          {"\n"}
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Iusto rerum
-          nulla nobis, iste esse error quasi minima? Quaerat ea voluptates
-          suscipit numquam sequi vero, cum aperiam reprehenderit, et, saepe
-          dicta.
-          {"\n"}
-          {"\n"}
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum
-          perspiciatis consequuntur eligendi tenetur distinctio sapiente
-          voluptas quis voluptatem sequi impedit praesentium ullam ducimus
-          officia asperiores consectetur aperiam earum, nesciunt atque?
-        </p>
+        <p className="font20 ">{product?.product_desc}</p>
       </div>
     </div>
   );

@@ -9,19 +9,22 @@ export const getAllCategories = createAsyncThunk(
   }
 );
 
-export const getCategory = createAsyncThunk("category/category/1", async () => {
-  const res = await fetch(
-    `http://localhost:4000/api/categories/all?category=${true}`
-  );
-  const data = await res.json();
-  return data;
-});
+export const getCategory = createAsyncThunk(
+  "category/category/1",
+  async (collection_name) => {
+    const res = await fetch(
+      `http://localhost:4000/api/categories/all?category=${collection_name}`
+    );
+    const data = await res.json();
+    return data;
+  }
+);
 
 const categorySlice = createSlice({
   name: "category",
   initialState: {
     categories: [],
-    category: [],
+    collection: [],
     oneCategory: [],
     status: false,
   },
@@ -38,7 +41,7 @@ const categorySlice = createSlice({
         const isFulfilled = state;
         isFulfilled.status = "Fulfilled";
         const dataJson = action.payload;
-        isFulfilled.category = dataJson;
+        isFulfilled.collection = dataJson;
       });
   },
 });
