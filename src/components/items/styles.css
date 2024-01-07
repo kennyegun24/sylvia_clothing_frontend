@@ -1,5 +1,5 @@
 .collection_prod {
-  background: #f3f3f3;
+  background: #fff;
   height: 500px;
   color: initial;
 }
@@ -16,13 +16,15 @@
   letter-spacing: 1px;
 }
 .collection_prod .in_stock {
-  margin: auto 1rem 1rem 1rem;
+  /* margin: auto 1rem 1rem 1rem; */
+  margin: auto;
   border-radius: 6px;
   border: 1px solid #000000;
 }
 
 .collection_prod .out_stock {
-  margin: auto 1rem 1rem 1rem;
+  /* margin: auto 1rem 1rem 1rem; */
+  margin: auto;
   color: #6b6b6b;
   border-radius: 6px;
   border: 1px solid #6b6b6b;
@@ -30,7 +32,7 @@
 
 @media (min-width: 200px) and (max-width: 767px) {
   .collection_prod {
-    background: #f3f3f3;
+    background: #fff;
     height: 500px;
   }
 }

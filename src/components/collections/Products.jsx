@@ -19,7 +19,7 @@ const Products = () => {
         <section className="flex gap05rem margin_top_1rem wrap">
           {categories_preview[0].categories.map((cat, _index) => (
             <Link
-              className="collection_prod flex column product_card"
+              className="collection_prod product_card"
               to={`${cat.product_name}`}
             >
               <ProductCard cat={cat} />

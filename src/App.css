@@ -75,6 +75,9 @@ body {
   position: relative;
 }
 
+.height100 {
+  height: 100%;
+}
 .pointer {
   cursor: pointer;
 }
