@@ -10,7 +10,7 @@ const ThirdSection = ({ data, text, link }) => {
       <section className="flex gap1rem margin_top_1rem">
         {productsArray.map((cat, _index) => (
           <Link
-            to={`collections/${link}/${cat.product_name}`}
+            to={`collections/${link}/${cat.product_name}/${cat._id}`}
             className="collection_prod slides_carousel flex column"
           >
             <ProductCard cat={cat} />
