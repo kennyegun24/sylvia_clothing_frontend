@@ -6,6 +6,7 @@ import { CiDeliveryTruck } from "react-icons/ci";
 import { GiReturnArrow } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneProduct } from "../../redux/products";
+import { itemAdded } from "../../redux/cart";
 
 const ProductDetails = () => {
   const [triggerDelivery, setTriggerDelivery] = useState(false);
@@ -18,6 +19,18 @@ const ProductDetails = () => {
   useEffect(() => {
     dispatch(getOneProduct(id));
   }, []);
+
+  const addItem = () => {
+    dispatch(
+      itemAdded({
+        id: product._id,
+        product: { ...product, price: product.price * quantity },
+        quantity,
+        price: product.price * quantity,
+      })
+    );
+  };
+
   return (
     <div className="flex gap2rem justify_between column">
       <div className="flex gap1rem justify_between product_details">
@@ -42,6 +55,7 @@ const ProductDetails = () => {
               <button
                 className="pointer"
                 onClick={() => setQuantity((prev) => (prev += 1))}
+                disabled={quantity >= product.in_stock}
               >
                 +
               </button>
@@ -50,7 +64,9 @@ const ProductDetails = () => {
           <p className="font16 fontW700">
             There are currently {product.in_stock} products in stock
           </p>
-          <button className="pointer">Add to cart</button>
+          <button className="pointer" onClick={addItem}>
+            Add to cart
+          </button>
 
           <div className="flex gap2rem column product_description_drowdown">
             <section className="width100 flex column gap1rem">

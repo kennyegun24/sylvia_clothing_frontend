@@ -10,6 +10,8 @@ import { SiVisa } from "react-icons/si";
 import { FaCcMastercard } from "react-icons/fa";
 import { ShowCartContext } from "../../context/showCart";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { deleteCart } from "../../redux/cart";
 
 const _mock_items = [
   {
@@ -69,7 +71,14 @@ const _mock_items = [
 ];
 const CartModal = () => {
   const { showCart, toggleCart } = useContext(ShowCartContext);
-  const [items, setItems] = useState(_mock_items);
+  const { products, total } = useSelector((state) => state.cart);
+  const [items, setItems] = useState(products);
+  const [success, setSuccess] = useState(false);
+  const dispatch = useDispatch();
+  const deleteCartItem = (id, price) => {
+    dispatch(deleteCart({ id, price }));
+    setSuccess(true);
+  };
 
   const increaseQuantity = (index) => {
     const updated_values = [...items];
@@ -82,7 +91,7 @@ const CartModal = () => {
     updated_values[index].quantity -= 1;
     setItems(updated_values);
   };
-
+  console.log(products);
   return (
     <section className={`cart_modal_container ${showCart && "show_cart"} `}>
       <div className="cart_modal flex column align_center">
@@ -97,17 +106,24 @@ const CartModal = () => {
         <section className="cart_items flex column width100 gap15rem">
           {items.map((item, _index) => (
             <section className="cart_item flex gap1rem">
-              <img src={item.product_image} className="cart_image" alt="" />
+              <img
+                src={item.product.product_image}
+                className="cart_image"
+                alt=""
+              />
               <div className="flex column justify_between width100">
                 <p className="font14 fontW700 cart_product_name_price">
-                  {item.product_name}
+                  {item.product.product_name}
                 </p>
                 <p className="font14 fontW700 cart_product_name_price">
                   ${item.price}
                 </p>
                 <div className="flex justify_between align_center">
                   <p className="font12 pointer">
-                    <RiDeleteBin5Line className="font16" />
+                    <RiDeleteBin5Line
+                      onClick={() => deleteCartItem(item._id, item.price)}
+                      className="font16"
+                    />
                   </p>
 
                   <div className="cart_add_reduce_div flex align_center">
@@ -120,7 +136,10 @@ const CartModal = () => {
                     />
                     <p>{item.quantity}</p>
                     <FaPlus
-                      onClick={() => increaseQuantity(_index)}
+                      onClick={() =>
+                        item.quantity < item.product.in_stock &&
+                        increaseQuantity(_index)
+                      }
                       className="pointer cart_add"
                     />
                   </div>
@@ -132,7 +151,7 @@ const CartModal = () => {
 
         <section className="padding1rem flex align_center justify_between sub_total">
           <h3>Subtotal</h3>
-          <p className="fontW700">$72653</p>
+          <p className="fontW700">${total}</p>
         </section>
         <Link
           to={"/cart/checkout"}

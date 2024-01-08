@@ -14,9 +14,6 @@ const CategoriesHover = () => {
       <h2 className="font20">Collections</h2>
       <hr />
       <div className="flex wrap gap1rem">
-        <a href="/collections">All Collections</a>
-        <a href="/">Best Rated</a>
-        <a href="/">New Arrivals</a>
         {categories.map((cat, _index) => {
           const split = cat.slice(1);
           const firstLetter = cat.substring(0, 1).toUpperCase();
