@@ -1,5 +1,4 @@
-import React, { useContext, useEffect } from "react";
-import { categories_preview } from "../../data/categories_home";
+import React, { useContext, useEffect, useState } from "react";
 import { CiFilter } from "react-icons/ci";
 import { ShowCartContext } from "../../context/showCart";
 import { Link } from "react-router-dom";
@@ -14,6 +13,36 @@ const Products = () => {
     dispatch(getCategory(collectionName));
   }, []);
   const { collection } = useSelector((state) => state.collections);
+  const { minVal, maxVal, advFilter } = useSelector((state) => state.filter);
+  const [prods, setProds] = useState(collection);
+  useEffect(() => {
+    const _sortedByPopularPosts = [...collection];
+    const e = advFilter;
+    if (e === "a-z") {
+      _sortedByPopularPosts.sort((a) => a.product_name);
+      setProds(_sortedByPopularPosts);
+    } else if (e === "z-a") {
+      _sortedByPopularPosts.sort((a, b) =>
+        b.product_name.localeCompare(a.product_name)
+      );
+      setProds(_sortedByPopularPosts);
+    } else if (e === "new-to-old") {
+      _sortedByPopularPosts.sort((a, b) => b.createdAt - a.createdAt);
+      setProds(_sortedByPopularPosts);
+    } else if (e === "old-to-new") {
+      _sortedByPopularPosts.sort((a, b) => a.createdAt - b.createdAt);
+      setProds(_sortedByPopularPosts);
+    } else if (e === "high-low") {
+      _sortedByPopularPosts.sort((a, b) => b.price - a.price);
+      setProds(_sortedByPopularPosts);
+    } else if (e === "low-hig") {
+      _sortedByPopularPosts.sort((a, b) => a.price - b.price);
+      setProds(_sortedByPopularPosts);
+    } else {
+      setProds(collection);
+    }
+  }, [advFilter, collection]);
+
   return (
     <div>
       <div className="category_product_container flex column align_center">
@@ -25,14 +54,16 @@ const Products = () => {
           </p>
         </div>
         <section className="flex gap05rem margin_top_1rem wrap">
-          {collection.map((cat, _index) => (
-            <Link
-              className="collection_prod product_card"
-              to={`${cat.product_name}/${cat._id}`}
-            >
-              <ProductCard cat={cat} />
-            </Link>
-          ))}
+          {prods
+            .filter((a, b) => a.price >= minVal && a.price <= maxVal)
+            .map((cat, _index) => (
+              <Link
+                className="collection_prod product_card"
+                to={`${cat.product_name}/${cat._id}`}
+              >
+                <ProductCard cat={cat} />
+              </Link>
+            ))}
         </section>
       </div>
     </div>

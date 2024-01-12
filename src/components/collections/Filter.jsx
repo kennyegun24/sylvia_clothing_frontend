@@ -2,10 +2,13 @@ import React, { useContext, useState } from "react";
 import "./styles.css";
 import { IoIosArrowDown } from "react-icons/io";
 import { ShowCartContext } from "../../context/showCart";
+import useFilter from "./filterHook";
 
 const Filter = () => {
   const [show, setShow] = useState(false);
   const { toggleFilter } = useContext(ShowCartContext);
+  const { changeMin, changeMax, changeFilter } = useFilter();
+
   return (
     <div className="filter_container flex column gap1rem">
       <div className="cancel cancel_filter_display">
@@ -30,8 +33,16 @@ const Filter = () => {
                 className="padding075rem"
                 type="number"
                 placeholder="From"
+                onChange={(e) => changeMin(e)}
+                min={1}
               />
-              <input className="padding075rem" type="text" placeholder="To" />
+              <input
+                className="padding075rem"
+                type="number"
+                placeholder="To"
+                onChange={(e) => changeMax(e)}
+                max={1000000}
+              />
             </div>
           </section>
         )}
@@ -40,14 +51,13 @@ const Filter = () => {
         <p>Sort By</p>
 
         <div className="flex price_filter justify_between">
-          <select name="" id="">
-            <option value="old-to-new">Most recent</option>
+          <select name="" id="" onChange={(e) => changeFilter(e)}>
+            <option value="new-to-old">Most recent</option>
             <option value="old-to-new">Old to New</option>
-            <option value="old-to-new">New to Old</option>
-            <option value="old-to-new">A - Z</option>
-            <option value="old-to-new">Z - A</option>
-            <option value="old-to-new">Price (high - low)</option>
-            <option value="old-to-new">Price (low - high)</option>
+            <option value="a-z">A - Z</option>
+            <option value="z-a">Z - A</option>
+            <option value="high-low">Price (high - low)</option>
+            <option value="low-high">Price (low - high)</option>
           </select>
         </div>
       </section>
