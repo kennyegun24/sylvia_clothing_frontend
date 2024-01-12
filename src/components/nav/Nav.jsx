@@ -6,6 +6,8 @@ import logo from "../../assets/logo.jpg";
 import { ShowCartContext } from "../../context/showCart";
 import CategoriesHover from "./CategoriesHover";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
@@ -14,6 +16,7 @@ const Nav = () => {
     setToggle((prev) => !prev);
   };
   const [showCollections, setShowCollections] = useState(false);
+  const { currentUser } = useSelector((state) => state.user);
   return (
     <div className="flex column sticky gap1rem big_nav_container">
       <nav className="nav_container flex justify_center">
@@ -63,9 +66,13 @@ const Nav = () => {
             </a>
             <CiSearch className="font20" />
             <CiShoppingCart className="font20 pointer" onClick={toggleCart} />
-            <a className="font15 login_btn" href="/login">
-              Login
-            </a>
+            {!currentUser ? (
+              <Link className="font15 login_btn" to="/login">
+                Login
+              </Link>
+            ) : (
+              <button className="font15 login_btn pointer">Logout</button>
+            )}
           </section>
         </div>
       </nav>

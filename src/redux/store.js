@@ -14,6 +14,7 @@ import cartSlice from "./cart";
 import categorySlice from "./collection";
 import productsSlice from "./products";
 import filterSlice from "./filter";
+import userSlice from "./user";
 
 const persistConfig = {
   key: "root",
@@ -21,12 +22,12 @@ const persistConfig = {
   storage,
 };
 
-// const persistedReducer = persistReducer(persistConfig, userSlice);
+const persistedReducer = persistReducer(persistConfig, userSlice);
 const persistedCartReducer = persistReducer(persistConfig, cartSlice);
 
 export const store = configureStore({
   reducer: {
-    // user: persistedReducer,
+    user: persistedReducer,
     cart: persistedCartReducer,
     collections: categorySlice,
     products: productsSlice,

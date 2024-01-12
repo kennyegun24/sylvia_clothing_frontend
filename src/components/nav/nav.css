@@ -20,8 +20,6 @@
     a,
     button {
       color: #111;
-      border: none;
-      background: transparent;
     }
     a:hover,
     button:hover {
@@ -47,12 +45,15 @@
   background: #eb9df5;
   padding: 0.5rem 1rem;
   border-radius: 6px;
+  border: 1px solid #eb9df5;
+  color: #fff;
 }
 
 .login_btn:hover {
   background: #fff;
   border: 1px solid #eb9df5;
-  padding: 0.4rem 0.95rem;
+  padding: 0.5rem 1rem;
+  color: #111;
 }
 
 .collections_hover_div {
@@ -69,6 +70,11 @@
     color: #111;
     font-size: 14px;
   }
+}
+
+.desktop_navs {
+  background: transparent;
+  border: none;
 }
 
 @media (min-width: 200px) and (max-width: 767px) {
@@ -124,6 +130,7 @@
 
   .desktop_navs {
     display: none;
+    background: transparent;
   }
 
   .nav_search_cart {
