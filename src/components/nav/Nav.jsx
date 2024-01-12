@@ -8,6 +8,7 @@ import CategoriesHover from "./CategoriesHover";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { logout } from "../../redux/user";
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
@@ -71,7 +72,9 @@ const Nav = () => {
                 Login
               </Link>
             ) : (
-              <button className="font15 login_btn pointer">Logout</button>
+              <button onClick={logout} className="font15 login_btn pointer">
+                Logout
+              </button>
             )}
           </section>
         </div>
