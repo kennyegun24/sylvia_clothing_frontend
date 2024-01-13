@@ -2,7 +2,29 @@ import React from "react";
 import CustomInputs from "./CustomInputs";
 import "./styles.css";
 import PaymentOptions from "./PaymentOptions";
-const PaymentDetailsForm = ({ makePayment }) => {
+import { make_payment } from "../../redux/auth";
+const PaymentDetailsForm = () => {
+  const products = [
+    {
+      id: "6595ef2ad58b712b93d3c0be",
+      quantity: 1,
+    },
+    {
+      id: "6596813bc249d3c1b6b470f1",
+      quantity: 2,
+    },
+    {
+      id: "6596866ad4c87ac513edef6e",
+      quantity: 2,
+    },
+    {
+      id: "65970a32dcea060ab9661b12",
+      quantity: 5,
+    },
+  ];
+  const makePayment = () => {
+    make_payment(products);
+  };
   return (
     <div className="flex column gap3rem width100">
       <section className="flex column gap1rem">
