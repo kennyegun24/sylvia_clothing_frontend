@@ -1,9 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import "./cart_modal.css";
 import { IoClose } from "react-icons/io5";
-import image1 from "../../assets/no-search.png";
-import image2 from "../../assets/no_image.jpg";
-import image3 from "../../assets/rand.jpg";
 import { RiDeleteBin5Line, RiSubtractFill } from "react-icons/ri";
 import { FaPlus } from "react-icons/fa6";
 import { SiVisa } from "react-icons/si";
@@ -17,11 +14,9 @@ const CartModal = () => {
   const { showCart, toggleCart } = useContext(ShowCartContext);
   const { products, total } = useSelector((state) => state.cart);
   const [items, setItems] = useState(products);
-  const [success, setSuccess] = useState(false);
   const dispatch = useDispatch();
   const deleteCartItem = (id, price) => {
     dispatch(deleteCart({ id, price }));
-    setSuccess(true);
   };
 
   useEffect(() => {

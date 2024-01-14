@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "./styles.css";
-import image from "../../assets/IMG-20231214-WA0050.jpg";
 import { IoIosArrowDown, IoIosArrowUp } from "react-icons/io";
 import { CiDeliveryTruck } from "react-icons/ci";
 import { GiReturnArrow } from "react-icons/gi";
