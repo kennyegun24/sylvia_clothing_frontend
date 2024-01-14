@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./cart_modal.css";
 import { IoClose } from "react-icons/io5";
 import image1 from "../../assets/no-search.png";
@@ -11,64 +11,8 @@ import { FaCcMastercard } from "react-icons/fa";
 import { ShowCartContext } from "../../context/showCart";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCart } from "../../redux/cart";
+import { deleteCart, addQuantity, decreaseQuantity } from "../../redux/cart";
 
-const _mock_items = [
-  {
-    product_image: image1,
-    price: 476,
-    product_name: "Anti Tear Vinyl Bottle SkyBlue",
-    quantity: 8,
-  },
-  {
-    product_image: image2,
-    price: 129,
-    product_name: "Anti Tear Vinyl Bottle Green",
-    quantity: 2,
-  },
-  {
-    product_image: image3,
-    price: 745,
-    product_name: "ASHANTI Golden green material",
-    quantity: 3,
-  },
-  {
-    product_image: image1,
-    price: 476,
-    product_name: "Anti Tear Vinyl Bottle SkyBlue",
-    quantity: 1,
-  },
-  {
-    product_image: image2,
-    price: 129,
-    product_name: "Anti Tear Vinyl Bottle Green",
-    quantity: 7,
-  },
-  {
-    product_image: image3,
-    price: 745,
-    product_name: "ASHANTI Golden green material",
-    quantity: 5,
-  },
-  {
-    product_image: image1,
-    price: 476,
-    product_name: "Anti Tear Vinyl Bottle SkyBlue",
-    quantity: 2,
-  },
-  {
-    product_image: image2,
-    price: 129,
-    product_name: "Anti Tear Vinyl Bottle Green",
-    quantity: 1,
-  },
-  {
-    product_image: image3,
-    price: 745,
-    product_name: "ASHANTI Golden green material",
-    quantity: 1,
-  },
-];
 const CartModal = () => {
   const { showCart, toggleCart } = useContext(ShowCartContext);
   const { products, total } = useSelector((state) => state.cart);
@@ -80,18 +24,29 @@ const CartModal = () => {
     setSuccess(true);
   };
 
-  const increaseQuantity = (index) => {
-    const updated_values = [...items];
-    updated_values[index].quantity += 1;
-    setItems(updated_values);
+  useEffect(() => {
+    setItems(products);
+  }, [products]);
+  // const increaseQuantity = (index) => {
+  //   const updated_values = [...items];
+  //   updated_values[index].quantity += 1;
+  //   setItems(updated_values);
+  // };
+
+  // const reduceQuantity = (index) => {
+  //   const updated_values = [...items];
+  //   updated_values[index].quantity -= 1;
+  //   setItems(updated_values);
+  // };
+
+  const increaseQuantity = (id) => {
+    dispatch(addQuantity(id));
   };
 
-  const reduceQuantity = (index) => {
-    const updated_values = [...items];
-    updated_values[index].quantity -= 1;
-    setItems(updated_values);
+  const reduceQuantity = (id) => {
+    dispatch(decreaseQuantity(id));
   };
-  console.log(products);
+
   return (
     <section className={`cart_modal_container ${showCart && "show_cart"} `}>
       <div className="cart_modal flex column align_center">
@@ -121,7 +76,7 @@ const CartModal = () => {
                 <div className="flex justify_between align_center">
                   <p className="font12 pointer">
                     <RiDeleteBin5Line
-                      onClick={() => deleteCartItem(item._id, item.price)}
+                      onClick={() => deleteCartItem(item.id, item.price)}
                       className="font16"
                     />
                   </p>
@@ -129,7 +84,7 @@ const CartModal = () => {
                   <div className="cart_add_reduce_div flex align_center">
                     <RiSubtractFill
                       onClick={() =>
-                        item.quantity > 1 && reduceQuantity(_index)
+                        item.quantity > 1 && reduceQuantity(item.id)
                       }
                       className="pointer cart_reduce"
                       // disabled={item.quantity <= 1}
@@ -138,7 +93,7 @@ const CartModal = () => {
                     <FaPlus
                       onClick={() =>
                         item.quantity < item.product.in_stock &&
-                        increaseQuantity(_index)
+                        increaseQuantity(item.id)
                       }
                       className="pointer cart_add"
                     />

@@ -24,7 +24,7 @@ const ProductDetails = () => {
     dispatch(
       itemAdded({
         id: product._id,
-        product: { ...product, price: product.price * quantity },
+        product: { ...product, price: product.price },
         quantity,
         price: product.price * quantity,
       })
