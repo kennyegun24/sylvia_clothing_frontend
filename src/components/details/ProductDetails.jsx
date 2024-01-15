@@ -6,7 +6,8 @@ import { GiReturnArrow } from "react-icons/gi";
 import { useDispatch, useSelector } from "react-redux";
 import { getOneProduct } from "../../redux/products";
 import { itemAdded } from "../../redux/cart";
-
+import { RiStarSFill } from "react-icons/ri";
+import { makeReview } from "../../redux/apiCalls";
 const ProductDetails = () => {
   const [triggerDelivery, setTriggerDelivery] = useState(false);
   const [TriggerReturn, setTriggerReturn] = useState(false);
@@ -14,6 +15,9 @@ const ProductDetails = () => {
   const { product } = useSelector((state) => state.products);
   const dispatch = useDispatch();
   const id = window.location.pathname.split("/")[4];
+  const [currentStar, setCurrentStar] = useState(0);
+  const [overStar, setOverStar] = useState(undefined);
+  const { currentUser } = -useSelector((state) => state.user);
 
   useEffect(() => {
     dispatch(getOneProduct(id));
@@ -28,6 +32,25 @@ const ProductDetails = () => {
         price: product.price * quantity,
       })
     );
+  };
+
+  const numOfStars = Array(5).fill(0);
+
+  const handleClick = (index) => {
+    setCurrentStar(index);
+  };
+
+  const handleMouseHover = (index) => {
+    setOverStar(index);
+  };
+
+  const handleMouseHLeave = () => {
+    setOverStar(undefined);
+  };
+
+  const rateItem = (product_id) => {
+    if (currentUser?.access_token)
+      makeReview(currentUser?.access_token, product_id, currentStar);
   };
 
   return (
@@ -60,6 +83,13 @@ const ProductDetails = () => {
               </button>
             </div>
           </section>
+          <div className="flex align_center">
+            <RiStarSFill className="stars font24" />
+            <p className="font16 fontW700 ">
+              {product?.rating?.ratings} stars (
+              {product?.rating?.num_of_users_rated} ratings)
+            </p>
+          </div>
           <p className="font16 fontW700">
             There are currently {product.in_stock} products in stock
           </p>
@@ -176,6 +206,31 @@ const ProductDetails = () => {
       <div className="flex column gap1rem product_details_description_div">
         <h3>Description</h3>
         <p className="font20 ">{product?.product_desc}</p>
+      </div>
+      <div className="flex column gap1rem product_details_description_div">
+        <hr />
+        <h3>Rate product</h3>
+        <p>
+          Review this product honestly based on the quality you got after
+          purchasing product
+        </p>
+        <div className="ratingContainer">
+          {numOfStars.map((_, index) => (
+            <RiStarSFill
+              className="font24 pointer"
+              color={(overStar || currentStar) > index ? "#fed316" : "#000"}
+              onMouseOver={() => handleMouseHover(index + 1)}
+              onMouseLeave={handleMouseHLeave}
+              onClick={() => handleClick(index + 1)}
+            />
+          ))}
+        </div>
+        <button
+          onClick={() => rateItem(product?._id)}
+          className="reviewButton pointer"
+        >
+          Send Review
+        </button>
       </div>
     </div>
   );
