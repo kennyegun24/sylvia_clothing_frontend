@@ -1,7 +1,10 @@
 import { loadStripe } from "@stripe/stripe-js";
 import { loginFailure, loginPending, loginSuccess } from "./user";
+import { resetOrder } from "./order";
+import { clearCart } from "./cart";
 const API_URL = "http://localhost:4000";
-const pub_key = process.env.STRIPE_PUB_KEY;
+const pub_key =
+  "pk_test_51N1y0eFGKykGLNp48Ark1rAlHzEzCLLI8YBGbxbsZDleQ4pOgS0EyDwTwlMpLVop20Wb2u6GryVPkeg8x46G6HUv001pDGfaKH";
 export const loginUser = async ({ userName, password }) => {
   try {
     loginPending(true);
@@ -40,8 +43,10 @@ export const createAccount = async ({ userName, password, email }) => {
 };
 
 export const make_payment = async (products) => {
+  console.log(pub_key);
   const stripe_promise = await loadStripe(pub_key);
   const body = { products: products };
+  alert("pay");
 
   try {
     const req = await fetch(
@@ -68,12 +73,32 @@ export const make_payment = async (products) => {
   }
 };
 
-export const makeOrder = async (products, token) => {
+export const makeOrder = async (products, token, userDetails, dispatch) => {
   try {
     await fetch(`${API_URL}/api/orders`, {
       method: "POST",
       body: {
-        products,
+        products: products,
+        ...userDetails,
+      },
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    dispatch(resetOrder());
+    dispatch(clearCart());
+  } catch (error) {
+    alert(error);
+  }
+};
+
+export const makeReview = async (token, product_id, rating) => {
+  try {
+    await fetch(`${API_URL}/api/product/rate`, {
+      method: "POST",
+      body: {
+        product_id: product_id,
+        rating: rating,
       },
       headers: {
         Authorization: `Bearer ${token}`,
