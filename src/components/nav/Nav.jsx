@@ -16,6 +16,7 @@ const Nav = () => {
   const showHide = () => {
     setToggle((prev) => !prev);
   };
+  const { products } = useSelector((state) => state.cart);
   const [showCollections, setShowCollections] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
   return (
@@ -66,7 +67,12 @@ const Nav = () => {
               Products
             </a>
             <CiSearch className="font20" />
-            <CiShoppingCart className="font20 pointer" onClick={toggleCart} />
+            <div className="cart_icon">
+              <CiShoppingCart className="font20 pointer" onClick={toggleCart} />
+              <p className="cart_no_of_items flex justify_center align_center">
+                {products.length}
+              </p>
+            </div>
             {!currentUser ? (
               <Link className="font15 login_btn" to="/login">
                 Login

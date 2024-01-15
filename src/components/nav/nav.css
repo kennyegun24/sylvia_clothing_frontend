@@ -77,6 +77,22 @@
   border: none;
 }
 
+.cart_icon {
+  position: relative;
+}
+
+.cart_no_of_items {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background: #000;
+  border-radius: 50%;
+  height: 16px;
+  width: 16px;
+  font-size: 10px;
+  color: #fff;
+}
+
 @media (min-width: 200px) and (max-width: 767px) {
   .collections_hover_div {
     display: none;
