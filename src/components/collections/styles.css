@@ -43,7 +43,7 @@
 
 .category_product_container {
   width: 100%;
-  padding: 0 1rem 2rem 1rem;
+  padding: 0 1rem 1.5rem 1rem;
 }
 
 .category_product_container section::-webkit-scrollbar {
@@ -80,18 +80,21 @@
 
 .product_card {
   width: calc((100% - 1.5rem) / 3);
+  color: initial;
 }
 
 .product_card img {
   width: 100%;
 }
 
-@media (min-width: 200px) and (max-width: 767px) {
+@media (min-width: 200px) and (max-width: 1024px) {
   .product_card {
     width: calc((100% - 1rem) / 2);
     height: 450px;
   }
+}
 
+@media (min-width: 200px) and (max-width: 767px) {
   .product_card img {
     height: 200px;
   }
