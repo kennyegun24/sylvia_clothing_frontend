@@ -101,6 +101,7 @@
 
 .slides_carousel {
   width: 250px;
+  color: initial;
 }
 
 .slides_carousel img {

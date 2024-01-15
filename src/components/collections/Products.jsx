@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import ProductCard from "../items/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategory } from "../../redux/collection";
+import { itemAdded } from "../../redux/cart";
 const Products = () => {
   const { toggleFilter } = useContext(ShowCartContext);
   const collectionName = window.location.pathname.split("/")[2];
@@ -43,6 +44,17 @@ const Products = () => {
     }
   }, [advFilter, collection]);
 
+  const addItem = (product) => {
+    dispatch(
+      itemAdded({
+        id: product._id,
+        product: { ...product, price: product.price },
+        quantity: 1,
+        price: product.price * 1,
+      })
+    );
+  };
+
   return (
     <div>
       <div className="category_product_container flex column align_center">
@@ -57,12 +69,24 @@ const Products = () => {
           {prods
             .filter((a, b) => a.price >= minVal && a.price <= maxVal)
             .map((cat, _index) => (
-              <Link
-                className="collection_prod product_card"
-                to={`${cat.product_name}/${cat._id}`}
-              >
-                <ProductCard cat={cat} />
-              </Link>
+              <div className="product_card collection_prod flex column justify_between">
+                <Link
+                  className="color_initial"
+                  to={`${cat.product_name}/${cat._id}`}
+                >
+                  <ProductCard cat={cat} />
+                </Link>
+                <div className="width100 flex justify_center">
+                  <button
+                    className={`padding05rem width90 pointer ${
+                      cat.in_stock > 0 ? "in_stock" : "out_stock"
+                    }`}
+                    onClick={() => addItem(cat)}
+                  >
+                    {cat.in_stock > 0 ? "Add to cart" : "Out of stock"}
+                  </button>
+                </div>
+              </div>
             ))}
         </section>
       </div>

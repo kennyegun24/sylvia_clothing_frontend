@@ -10,15 +10,6 @@ const ProductCard = ({ cat }) => {
         <p className="font16">${cat.price}</p>
         <p className="font16">{cat.in_stock} in stock</p>
       </div>
-      <div className="width100 flex justify_center">
-        <button
-          className={`padding05rem width90 ${
-            cat.in_stock > 0 ? "in_stock" : "out_stock"
-          }`}
-        >
-          {cat.in_stock > 0 ? "Add to cart" : "Out of stock"}
-        </button>
-      </div>
     </div>
   );
 };

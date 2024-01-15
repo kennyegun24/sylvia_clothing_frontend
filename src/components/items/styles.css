@@ -2,6 +2,7 @@
   background: #fff;
   height: 500px;
   color: initial;
+  padding-bottom: 0.25rem;
 }
 
 .collection_prod img {
@@ -16,14 +17,12 @@
   letter-spacing: 1px;
 }
 .collection_prod .in_stock {
-  /* margin: auto 1rem 1rem 1rem; */
   margin: auto;
   border-radius: 6px;
   border: 1px solid #000000;
 }
 
 .collection_prod .out_stock {
-  /* margin: auto 1rem 1rem 1rem; */
   margin: auto;
   color: #6b6b6b;
   border-radius: 6px;
