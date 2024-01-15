@@ -13,7 +13,15 @@ const useFilter = () => {
   };
 
   const changeMax = (e) => {
-    setFilterPriceMax(e.target.value);
+    setFilterPriceMax((prev) =>
+      prev === 0
+        ? 10000000
+        : prev === ""
+        ? 1000000
+        : prev === null
+        ? 1000000
+        : e.target.value
+    );
   };
 
   const changeFilter = (e) => {

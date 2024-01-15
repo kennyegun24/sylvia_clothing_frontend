@@ -14,15 +14,16 @@ import Failure from "./pages/payment_status/Failure";
 import { useSelector } from "react-redux";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
+import { Toaster } from "sonner";
 
 function App() {
   const { currentUser } = useSelector((state) => state.user);
-  console.log(currentUser);
   return (
     <div className="app flex column">
       <ShowCartProvider>
         <Nav />
         <CartModal />
+        <Toaster />
         <div style={{ minHeight: "70vh", background: "#f4f4f4" }}>
           <Routes>
             <Route index element={<Home />} />
@@ -34,7 +35,7 @@ function App() {
             />
             <Route
               path="/cart/checkout"
-              element={currentUser ? <Cart /> : <Navigate to={"/login"} />}
+              element={!currentUser ? <Cart /> : <Navigate to={"/login"} />}
             />
             <Route
               path="/payment/success"
