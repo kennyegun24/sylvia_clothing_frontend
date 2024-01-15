@@ -1,20 +1,42 @@
 import { createSlice } from "@reduxjs/toolkit";
+// import { toast } from "react-toastify";
+import { toast } from "sonner";
 
+const initialState = {
+  products: [],
+  total: 0,
+};
 const cartSlice = createSlice({
   name: "cart",
-  initialState: {
-    products: [],
-    total: 0,
-  },
+  initialState,
   reducers: {
     itemAdded: (state, action) => {
       const findItem = state.products.find(
         (prod) => prod.id === action.payload.id
       );
-      if (findItem) return;
+      if (findItem) {
+        toast.error("Item already in the cart", {
+          description: "Unsuccessful",
+          duration: 2000,
+          position: "top-right",
+          style: {
+            background: "#fb6f6f",
+            color: "#fff",
+          },
+        });
+        return;
+      }
 
       state.products.push(action.payload);
       state.total += action.payload.price;
+      toast.success("Item added to cart", {
+        description: "Successfully added",
+        duration: 2000,
+        position: "top-right",
+        style: {
+          background: "#31f731",
+        },
+      });
     },
     deleteCart: (state, action) => {
       const productId = action.payload.id;
@@ -23,6 +45,11 @@ const cartSlice = createSlice({
       );
       state.products = updatedProducts;
       state.total -= action.payload.price;
+      toast.success("Item removed from cart", {
+        description: "Item deleted",
+        duration: 2000,
+        position: "top-right",
+      });
     },
     addQuantity: (state, action) => {
       const updatedProduct = action.payload;
@@ -54,14 +81,15 @@ const cartSlice = createSlice({
         state.total += existingProduct.quantity * existingProduct.product.price;
       }
     },
+    clearCart: () => initialState,
   },
 });
 
 export const {
   itemAdded,
-  loadCart,
   deleteCart,
   addQuantity,
   decreaseQuantity,
+  clearCart,
 } = cartSlice.actions;
 export default cartSlice.reducer;

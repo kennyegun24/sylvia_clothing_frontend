@@ -15,6 +15,7 @@ import categorySlice from "./collection";
 import productsSlice from "./products";
 import filterSlice from "./filter";
 import userSlice from "./user";
+import orderSlice from "./order";
 
 const persistConfig = {
   key: "root",
@@ -32,6 +33,7 @@ export const store = configureStore({
     collections: categorySlice,
     products: productsSlice,
     filter: filterSlice,
+    order: orderSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
