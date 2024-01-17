@@ -1,0 +1,119 @@
+.auth_container {
+  min-height: 100vh;
+  width: 100%;
+  background-color: #fff;
+  z-index: 99999999;
+  padding: 1rem;
+}
+
+.auth_container_sm {
+  height: 100%;
+  border: 1px solid #dcdcdc;
+  width: 25%;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.auth_container_sm > h2 {
+  text-align: left;
+  font-size: 1.5vw;
+}
+
+.auth_input_container {
+  gap: 0.25rem;
+}
+
+.auth_input_container span {
+  font-weight: 700;
+  font-size: 12px;
+}
+
+.auth_input_container input {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #b1b1b1;
+}
+
+.auth_button {
+  font-size: 12px;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+}
+
+.authDormantButton {
+  background: #eb9df5;
+}
+
+.loadingAuthButton {
+  background: #6e6e6e;
+  color: #fff;
+}
+
+.auth_link {
+  color: #5454ff;
+}
+
+.auth_container_sm {
+  font-size: 12px;
+}
+
+.auth_container_sm > p {
+  font-size: 12px;
+}
+
+@media (min-width: 767px) and (max-width: 1024px) {
+  .auth_container_sm {
+    width: 50%;
+  }
+
+  .auth_input_container span {
+    font-size: 18px;
+  }
+
+  .auth_input_container input {
+    padding: 0.7rem;
+  }
+
+  .auth_button {
+    font-size: 18px;
+  }
+
+  .auth_container_sm > p {
+    font-size: 18px;
+  }
+
+  .auth_container_sm > h2 {
+    font-size: 2vw;
+  }
+}
+
+@media (min-width: 200px) and (max-width: 767px) {
+  .auth_container_sm {
+    width: 100%;
+  }
+
+  .auth_container_sm > h2 {
+    font-size: 18px;
+  }
+
+  .auth_input_container span {
+    font-size: 14px;
+  }
+
+  .auth_input_container input {
+    padding: 0.7rem;
+  }
+
+  .auth_button {
+    font-size: 14px;
+  }
+
+  .auth_container_sm {
+    font-size: 14px;
+  }
+
+  .auth_container_sm > p {
+    font-size: 14px;
+  }
+}

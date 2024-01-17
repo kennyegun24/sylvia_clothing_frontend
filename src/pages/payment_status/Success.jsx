@@ -2,17 +2,23 @@ import React, { useEffect } from "react";
 import "./success.css";
 import { MdAttachMoney } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { makeOrder } from "../../redux/apiCalls";
 
 const Success = () => {
   const { products } = useSelector((state) => state.cart);
   const { userOrderDetails } = useSelector((state) => state.order);
   const { currentUser } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
   useEffect(() => {
     if (userOrderDetails)
-      makeOrder(products, currentUser?.access_token, userOrderDetails);
-  }, [products, currentUser?.access_token, userOrderDetails]);
+      makeOrder(
+        products,
+        currentUser?.access_token,
+        userOrderDetails,
+        dispatch
+      );
+  }, [products, currentUser?.access_token, userOrderDetails, dispatch]);
   return (
     <div className="payment_success_div column">
       <div className="flex align_center column gap15rem padding15rem">
