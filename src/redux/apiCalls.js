@@ -2,51 +2,55 @@ import { loadStripe } from "@stripe/stripe-js";
 import { loginFailure, loginPending, loginSuccess } from "./user";
 import { resetOrder } from "./order";
 import { clearCart } from "./cart";
+import axios from "axios";
 const API_URL = "http://localhost:4000";
-const pub_key =
-  "pk_test_51N1y0eFGKykGLNp48Ark1rAlHzEzCLLI8YBGbxbsZDleQ4pOgS0EyDwTwlMpLVop20Wb2u6GryVPkeg8x46G6HUv001pDGfaKH";
-export const loginUser = async ({ userName, password }) => {
+
+export const loginUser = async ({ email, password }, dispatch) => {
   try {
-    loginPending(true);
-    const req = await fetch(`${API_URL}/api/auth/login`, {
-      method: "POST",
-      body: {
-        user_name: userName,
-        password: password,
-      },
+    dispatch(loginPending(true));
+    const body = {
+      password: password,
+      email: email,
+    };
+
+    const axio = axios.create({
+      baseURL: "http://localhost:4000/api/",
     });
-    const data = await req.json();
-    loginSuccess(data);
+    const req = await axio.post("/auth/login", body);
+    const data = await req.data;
+    dispatch(loginSuccess(await data));
   } catch (error) {
-    loginFailure(true);
+    dispatch(loginFailure(true));
     alert(error);
   }
 };
 
-export const createAccount = async ({ userName, password, email }) => {
+export const createAccount = async (
+  { firstName, lastName, password, email },
+  dispatch
+) => {
+  const body = {
+    first_name: firstName,
+    last_name: lastName,
+    password: password,
+    email: email,
+  };
+
   try {
-    loginPending(true);
-    const req = await fetch(`${API_URL}/api/auth/login`, {
-      method: "POST",
-      body: {
-        user_name: userName,
-        password: password,
-        email: email,
-      },
+    dispatch(loginPending(true));
+    const axio = axios.create({
+      baseURL: "http://localhost:4000/api/",
     });
-    const data = await req.json();
-    loginSuccess(data);
+    const req = await axio.post("/auth/register", body);
+    const data = await req.data;
+    dispatch(loginSuccess(data));
   } catch (error) {
-    loginFailure(true);
-    alert(error);
+    dispatch(loginFailure(true));
   }
 };
 
-export const make_payment = async (products) => {
-  console.log(pub_key);
-  const stripe_promise = await loadStripe(pub_key);
+export const make_payment = async (products, token, id) => {
   const body = { products: products };
-  alert("pay");
 
   try {
     const req = await fetch(
@@ -55,36 +59,42 @@ export const make_payment = async (products) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          token: `Bearer ${token}`,
         },
         body: JSON.stringify(body),
       }
     );
 
     const session = await req.json();
+    const stripe_promise = await loadStripe(session.pub_key);
     const result = stripe_promise.redirectToCheckout({
       sessionId: session.id,
     });
 
     if ((await result).error) {
-      console.log((await result).error);
+      alert((await result).error);
     }
   } catch (error) {
-    alert("Somethign went wrong");
+    alert(error);
   }
 };
 
 export const makeOrder = async (products, token, userDetails, dispatch) => {
   try {
-    await fetch(`${API_URL}/api/orders`, {
-      method: "POST",
-      body: {
-        products: products,
-        ...userDetails,
-      },
+    const body = {
+      products: products,
+      ...userDetails,
+    };
+
+    const axio = axios.create({
+      baseURL: "http://localhost:4000/api/",
       headers: {
-        Authorization: `Bearer ${token}`,
+        token: `Bearer ${token}`,
       },
     });
+    const req = await axio.post("/orders", body);
+    await req.data;
+
     dispatch(resetOrder());
     dispatch(clearCart());
   } catch (error) {
