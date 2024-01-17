@@ -3,28 +3,9 @@ import CustomInputs from "./CustomInputs";
 import "./styles.css";
 import PaymentOptions from "./PaymentOptions";
 import { make_payment } from "../../redux/apiCalls";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { addOrder } from "../../redux/order";
 const PaymentDetailsForm = () => {
-  // const products = [
-  //   {
-  //     id: "6595ef2ad58b712b93d3c0be",
-  //     quantity: 1,
-  //   },
-  //   {
-  //     id: "6596813bc249d3c1b6b470f1",
-  //     quantity: 2,
-  //   },
-  //   {
-  //     id: "6596866ad4c87ac513edef6e",
-  //     quantity: 2,
-  //   },
-  //   {
-  //     id: "65970a32dcea060ab9661b12",
-  //     quantity: 5,
-  //   },
-  // ];
-  // const makePayment = () => {
-  // };
   const { currentUser } = useSelector((state) => state.user);
   const { total, products } = useSelector((state) => state.cart);
   const [userDetails, setUserDetails] = useState({
@@ -34,27 +15,21 @@ const PaymentDetailsForm = () => {
     postalCode: "",
     email: currentUser?.email,
     phoneNumber: "",
-    firstName: "",
-    lastName: "",
+    firstName: currentUser?.first_name,
+    lastName: currentUser?.last_name,
     country: "",
     city: "",
     state: "",
     products: products,
   });
   const [error, setError] = useState({});
-
+  const dispatch = useDispatch();
   const updateText = (e) => {
     setUserDetails({ ...userDetails, [e.target.name]: e.target.value });
   };
 
   const submitOrder = () => {
     const validationError = {};
-    if (userDetails.firstName.trim() === "") {
-      validationError.firstName = "First name should not be empty";
-    }
-    if (userDetails.lastName.trim() === "") {
-      validationError.lastName = "Last name should not be empty";
-    }
     if (!userDetails.address.trim()) {
       validationError.address = "Your address must be filled";
     }
@@ -76,8 +51,9 @@ const PaymentDetailsForm = () => {
     setError(validationError);
 
     if (Object.entries(validationError).length === 0) {
+      dispatch(addOrder(userDetails));
       // alert("success");
-      make_payment(products);
+      make_payment(products, currentUser?.access_token, currentUser?._id);
     }
   };
 
@@ -113,28 +89,28 @@ const PaymentDetailsForm = () => {
         </div>
         <div className="flex justify_between align_start width100">
           <div className="width45">
-            <CustomInputs
-              styles={{
-                width: "width100",
-                placeHolder: "First Name...",
-                type: "text",
-                name: "firstName",
-              }}
-              updateText={updateText}
+            <input
+              type="text"
+              name="firstName"
+              id=""
+              className="width100 padding1rem font14"
+              style={{ cursor: "not-allowed" }}
+              placeholder="First Name..."
+              value={currentUser?.first_name}
+              disabled
             />
-            <p className="font12 red">{error.firstName}</p>
           </div>
           <div className="width45">
-            <CustomInputs
-              styles={{
-                width: "width100",
-                placeHolder: "Last Name...",
-                type: "text",
-                name: "lastName",
-              }}
-              updateText={updateText}
+            <input
+              type="text"
+              name="lastName"
+              id=""
+              className="width100 padding1rem font14"
+              style={{ cursor: "not-allowed" }}
+              placeholder="Last Name..."
+              value={currentUser?.last_name}
+              disabled
             />
-            <p className="font12 red">{error.lastName}</p>
           </div>
         </div>
         <div className="width100">

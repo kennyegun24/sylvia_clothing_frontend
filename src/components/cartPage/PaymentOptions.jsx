@@ -5,7 +5,13 @@ const PaymentOptions = () => {
   return (
     <div className="flex column payment_option_div">
       <section className="flex gap05rem padding1rem payment_option_header">
-        <input type="radio" id="payment1" checked className="pointer" />
+        <input
+          readOnly
+          type="radio"
+          id="payment1"
+          checked
+          className="pointer"
+        />
         <label htmlFor="payment1" className="pointer font14">
           Stripe
         </label>
