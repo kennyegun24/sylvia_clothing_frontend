@@ -11,7 +11,9 @@ const orderSlice = createSlice({
     addOrder: (state, action) => {
       state.userOrderDetails = action.payload;
     },
-    resetOrder: () => initialState,
+    resetOrder: (state) => {
+      state.userOrderDetails = null;
+    },
   },
 });
 
