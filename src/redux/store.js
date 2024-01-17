@@ -25,6 +25,7 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, userSlice);
 const persistedCartReducer = persistReducer(persistConfig, cartSlice);
+const persistedOrder = persistReducer(persistConfig, orderSlice);
 
 export const store = configureStore({
   reducer: {
@@ -33,7 +34,7 @@ export const store = configureStore({
     collections: categorySlice,
     products: productsSlice,
     filter: filterSlice,
-    order: orderSlice,
+    order: persistedOrder,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

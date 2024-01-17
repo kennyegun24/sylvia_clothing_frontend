@@ -15,13 +15,16 @@ import { useSelector } from "react-redux";
 import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import { Toaster } from "sonner";
+import { useState } from "react";
 
 function App() {
   const { currentUser } = useSelector((state) => state.user);
+  // const pathName = window.location.pathname;
+  const [pathName, setPathName] = useState(null);
   return (
     <div className="app flex column">
       <ShowCartProvider>
-        <Nav />
+        {pathName !== "/login" && pathName !== "/register" && <Nav />}
         <CartModal />
         <Toaster />
         <div style={{ minHeight: "70vh", background: "#f4f4f4" }}>
@@ -35,7 +38,7 @@ function App() {
             />
             <Route
               path="/cart/checkout"
-              element={!currentUser ? <Cart /> : <Navigate to={"/login"} />}
+              element={currentUser ? <Cart /> : <Navigate to={"/login"} />}
             />
             <Route
               path="/payment/success"
@@ -47,17 +50,31 @@ function App() {
             />
             <Route
               path="/login"
-              element={!currentUser ? <Login /> : <Navigate to={"/"} />}
+              element={
+                !currentUser ? (
+                  <Login setPathName={setPathName} />
+                ) : (
+                  <Navigate to={"/"} />
+                )
+              }
             />
             <Route
               path="/register"
-              element={!currentUser ? <Register /> : <Navigate to={"/"} />}
+              element={
+                !currentUser ? (
+                  <Register setPathName={setPathName} />
+                ) : (
+                  <Navigate to={"/"} />
+                )
+              }
             />
           </Routes>
         </div>
-        <div className="footerDiv">
-          <Footer />
-        </div>
+        {pathName !== "/login" && pathName !== "/register" && (
+          <div className="footerDiv">
+            <Footer />
+          </div>
+        )}
       </ShowCartProvider>
     </div>
   );
