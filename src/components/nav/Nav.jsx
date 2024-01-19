@@ -7,18 +7,22 @@ import { ShowCartContext } from "../../context/showCart";
 import CategoriesHover from "./CategoriesHover";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/user";
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
   const { toggleCart } = useContext(ShowCartContext);
+  const dispatch = useDispatch();
   const showHide = () => {
     setToggle((prev) => !prev);
   };
   const { products } = useSelector((state) => state.cart);
   const [showCollections, setShowCollections] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
+  const logoutUser = () => {
+    dispatch(logout());
+  };
   return (
     <div className="flex column sticky gap1rem big_nav_container">
       <nav className="nav_container flex justify_center">
@@ -39,12 +43,30 @@ const Nav = () => {
           >
             <div className="flex monile_nav_menu justify_between">
               <div className="flex gap2rem column">
-                <a className="font15" href="/collections">
-                  Collections
-                </a>
-                <a className="font15" href="/">
-                  Products
-                </a>
+                <div className="relative">
+                  <button
+                    className="font18 pointer background_none flex gap05rem align_center relative"
+                    onClick={() => setShowCollections((prev) => !prev)}
+                  >
+                    Collections
+                    <IoMdArrowDropdown />
+                  </button>
+                  {showCollections && (
+                    <div className="collections_hover_div2">
+                      <CategoriesHover />
+                    </div>
+                  )}
+                </div>
+
+                {!currentUser ? (
+                  <Link className="font15 login_btn" to="/login">
+                    Login
+                  </Link>
+                ) : (
+                  <button onClick={logout} className="font15 login_btn pointer">
+                    Logout
+                  </button>
+                )}
               </div>
               <div className="flex gap1rem">
                 <FaInstagram className="font24" />
@@ -58,10 +80,14 @@ const Nav = () => {
                 className="font15 desktop_navs pointer flex gap05rem align_center relative"
                 onClick={() => setShowCollections((prev) => !prev)}
               >
-                Collectionss
+                Collections
                 <IoMdArrowDropdown />
               </button>
-              {showCollections && <CategoriesHover />}
+              {showCollections && (
+                <div className="collections_hover_div">
+                  <CategoriesHover />
+                </div>
+              )}
             </div>
             <a className="font15 desktop_navs" href="/">
               Products
@@ -74,11 +100,14 @@ const Nav = () => {
               </p>
             </div>
             {!currentUser ? (
-              <Link className="font15 login_btn" to="/login">
+              <Link className="font15 login_btn hide_login_logout" to="/login">
                 Login
               </Link>
             ) : (
-              <button onClick={logout} className="font15 login_btn pointer">
+              <button
+                onClick={logoutUser}
+                className="font15 hide_login_logout login_btn pointer"
+              >
                 Logout
               </button>
             )}

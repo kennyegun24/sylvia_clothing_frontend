@@ -65,6 +65,7 @@
   padding: 2rem 1rem;
   border-radius: 0.5rem;
   min-height: 100%;
+  z-index: 999;
 
   a {
     color: #111;
@@ -93,10 +94,34 @@
   color: #fff;
 }
 
+.background_none {
+  background: transparent;
+  border: none;
+}
+
 @media (min-width: 200px) and (max-width: 767px) {
   .collections_hover_div {
     display: none;
   }
+
+  .collections_hover_div2 {
+    display: flex;
+    position: absolute;
+    left: 0;
+    top: 5vh;
+    min-width: 350px;
+    background: #fff;
+    padding: 2rem 1rem;
+    border-radius: 0.5rem;
+    min-height: 100%;
+    z-index: 999;
+
+    a {
+      color: #111;
+      font-size: 14px;
+    }
+  }
+
   .nav_container {
     position: sticky;
     top: 0;
@@ -142,6 +167,10 @@
     height: 30px;
     width: 100px;
     object-fit: contain;
+  }
+
+  .hide_login_logout {
+    display: none;
   }
 
   .desktop_navs {

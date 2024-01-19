@@ -10,7 +10,7 @@ const CategoriesHover = () => {
     if (categories.length < 1) dispatch(getAllCategories());
   }, []);
   return (
-    <div className="collections_hover_div flex column gap1rem">
+    <div className="flex column gap1rem">
       <h2 className="font20">Collections</h2>
       <hr />
       <div className="flex wrap gap1rem">
