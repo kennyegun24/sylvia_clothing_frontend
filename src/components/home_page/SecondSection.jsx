@@ -6,7 +6,7 @@ import { getBestSellingProducts } from "../../redux/products";
 const SecondSection = () => {
   const dispatch = useDispatch();
   const { bestSellingProducts } = useSelector((state) => state.products);
-
+  console.log(bestSellingProducts);
   useEffect(() => {
     dispatch(getBestSellingProducts());
   }, []);

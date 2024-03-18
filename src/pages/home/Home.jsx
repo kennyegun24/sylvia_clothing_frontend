@@ -13,7 +13,7 @@ const Home = () => {
   const { newProducts, topRatedProducts } = useSelector(
     (state) => state.products
   );
-
+  console.log(newProducts);
   useEffect(() => {
     dispatch(getNewProducts());
     dispatch(getTopRatedProducts());

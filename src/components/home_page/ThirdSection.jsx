@@ -6,6 +6,7 @@ import { itemAdded } from "../../redux/cart";
 
 const ThirdSection = ({ data, text, link }) => {
   const productsArray = data.categories || data;
+  console.log(productsArray);
   const dispatch = useDispatch();
   const addItem = (product) => {
     dispatch(
@@ -22,7 +23,7 @@ const ThirdSection = ({ data, text, link }) => {
     <div className=" margin_top_2rem third_section flex column align_center">
       <h3 className="fontW700 width100">{text}</h3>
       <section className="flex gap1rem margin_top_1rem">
-        {productsArray.map((cat, _index) => (
+        {productsArray?.data?.map((cat, _index) => (
           <div className="collection_prod flex column justify_between">
             <Link
               to={`collections/${link}/${cat.product_name}/${cat._id}`}

@@ -8,6 +8,7 @@ const API_URL = "http://localhost:4000";
 export const loginUser = async ({ email, password }, dispatch) => {
   try {
     dispatch(loginPending(true));
+    console.log(password);
     const body = {
       password: password,
       email: email,
@@ -20,8 +21,7 @@ export const loginUser = async ({ email, password }, dispatch) => {
     const data = await req.data;
     dispatch(loginSuccess(await data));
   } catch (error) {
-    dispatch(loginFailure(true));
-    alert(error);
+    dispatch(loginFailure(error?.response?.data));
   }
 };
 
