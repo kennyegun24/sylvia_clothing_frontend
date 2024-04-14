@@ -68,7 +68,7 @@ const HomePage = () => {
             <img
               src={image4}
               class="selected_product_section_item_image"
-              alt=""
+              alt="img"
             />
             <div class="selected_product_section_item_price">
               <h4>Product name</h4>
