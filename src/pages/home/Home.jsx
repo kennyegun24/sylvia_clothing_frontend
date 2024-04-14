@@ -7,20 +7,22 @@ import { categories_preview } from "../../data/categories_home";
 import FourthSection from "../../components/home_page/FourthSection";
 import { useDispatch, useSelector } from "react-redux";
 import { getNewProducts, getTopRatedProducts } from "../../redux/products";
+import HomePage from "../../components/home_page/HomePage";
 
 const Home = () => {
   const dispatch = useDispatch();
   const { newProducts, topRatedProducts } = useSelector(
     (state) => state.products
   );
-  console.log(newProducts);
-  useEffect(() => {
-    dispatch(getNewProducts());
-    dispatch(getTopRatedProducts());
-  }, []);
+  // console.log(newProducts);
+  // useEffect(() => {
+  //   dispatch(getNewProducts());
+  //   dispatch(getTopRatedProducts());
+  // }, []);
   return (
     <div>
-      <FirstSection />
+      <HomePage />
+      {/* <FirstSection />
       <SecondSection />
       <FourthSection />
 
@@ -33,7 +35,7 @@ const Home = () => {
         link={"top_rated"}
         text={"Top Rated"}
         data={topRatedProducts}
-      />
+      /> */}
     </div>
   );
 };
