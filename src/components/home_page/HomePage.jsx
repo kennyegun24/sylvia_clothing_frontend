@@ -5,6 +5,7 @@ import image3 from "../../assets/asset21.jpg";
 import image4 from "../../assets/asset22.jpg";
 import image5 from "../../assets/asset9.jpg";
 import model1 from "../../assets/model2.png";
+import image6 from "../../assets/content_creator.jpg";
 
 const HomePage = () => {
   return (
@@ -91,7 +92,7 @@ const HomePage = () => {
 
       <section class="grid_container">
         <div class="grid1">
-          <img src="./assets/asset1.jpg" alt="" />
+          <img src={image6} alt="" />
           <div class="grid1_textx">
             <p>Mens Collection</p>
 
@@ -103,7 +104,7 @@ const HomePage = () => {
           </div>
         </div>
         <div class="grid2">
-          <img src="./assets/asset17.jpg" alt="" />
+          <img src={image2} alt="" />
           <div class="grid1_textx">
             <p>Mens Collection</p>
 
@@ -115,7 +116,7 @@ const HomePage = () => {
           </div>
         </div>
         <div class="grid3">
-          <img src="./assets/asset21.jpg" alt="" />
+          <img src={image3} alt="" />
           <div class="grid1_textx">
             <p>Mens Collection</p>
 
@@ -127,7 +128,7 @@ const HomePage = () => {
           </div>
         </div>
         <div class="grid4">
-          <img src="./assets/asset22.jpg" alt="" />
+          <img src={image1} alt="" />
           <div class="grid1_textx">
             <p>Mens Collection</p>
 
