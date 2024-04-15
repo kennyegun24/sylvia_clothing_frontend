@@ -1,7 +1,13 @@
 import React, { useContext, useState } from "react";
 import "./nav.css";
 import { CiShoppingCart, CiSearch } from "react-icons/ci";
-import { FaBars, FaFacebook, FaInstagram } from "react-icons/fa";
+import {
+  FaBars,
+  FaFacebook,
+  FaGooglePlusG,
+  FaInstagram,
+  FaTwitter,
+} from "react-icons/fa";
 import logo from "../../assets/logo.jpg";
 import { ShowCartContext } from "../../context/showCart";
 import CategoriesHover from "./CategoriesHover";
@@ -120,9 +126,15 @@ const Nav = () => {
         <h3>Welcome to our fashion store</h3>
 
         <div>
-          <p>Srh</p>
-          <p>user</p>
-          <p>cart</p>
+          <p>
+            <CiSearch className="font20 pointer" />
+          </p>
+          <div className="cart_icon">
+            <CiShoppingCart className="font20 pointer" onClick={toggleCart} />
+            <p className="cart_no_of_items flex justify_center align_center">
+              {products.length}
+            </p>
+          </div>
         </div>
       </nav>
       <section class="sec_nav_container">
@@ -138,19 +150,38 @@ const Nav = () => {
             <p class="cta">Follow Us:</p>
 
             <div class="cta_action">
-              <p class="cta_list">fb</p>
-              <p class="cta_list">twt</p>
-              <p class="cta_list">ig</p>
-              <p class="cta_list">g+</p>
+              <p class="cta_list">
+                <FaFacebook />
+              </p>
+              <p class="cta_list">
+                <FaTwitter />
+              </p>
+              <p class="cta_list">
+                <FaInstagram />
+              </p>
+              <p class="cta_list">
+                <FaGooglePlusG />
+              </p>
             </div>
           </div>
         </div>
 
         <div class="navigations">
-          <p>Home</p>
+          <Link to={"/"}>Home</Link>
           <p>Categories</p>
-          <p>Cart</p>
-          <p>Logout</p>
+          <Link to={"/cart/checkout"}>Cart</Link>
+          {!currentUser ? (
+            <Link className="font15 login_btn hide_login_logout" to="/login">
+              Login
+            </Link>
+          ) : (
+            <button
+              onClick={logoutUser}
+              className="font15 hide_login_logout login_btn pointer"
+            >
+              Logout
+            </button>
+          )}
         </div>
       </section>
     </>
