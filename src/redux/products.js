@@ -20,7 +20,9 @@ export const getOneProduct = createAsyncThunk("products/1", async (id) => {
 // new products
 export const getNewProducts = createAsyncThunk("products/new", async () => {
   console.log("data");
-  const res = await fetch(`http://localhost:4000/api/product/all?new=${true}`);
+  const res = await fetch(
+    `https://bk-fabrics-server.vercel.app/api/product/all?new=${true}`
+  );
   const data = await res.json();
   return data;
 });
