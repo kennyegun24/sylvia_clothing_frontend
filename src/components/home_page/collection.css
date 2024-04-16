@@ -24,7 +24,7 @@
       flex-direction: column;
       gap: 1rem;
 
-      > button {
+      > a {
         padding: 0.5rem 1rem;
         width: fit-content;
         border: none;
@@ -63,7 +63,7 @@
     grid-row: 1 / 7;
 
     > div {
-      button {
+      > a {
         background: #fff;
         color: #000;
         font-size: 12px;
@@ -89,7 +89,7 @@
       left: 10%;
       gap: 0.5rem;
 
-      button {
+      > a {
         background: #000;
         color: #fff;
         font-size: 12px;
@@ -123,7 +123,7 @@
       top: 0;
       flex-direction: column-reverse;
 
-      button {
+      > a {
         color: #000;
         font-size: 12px;
         background-color: #fff;
@@ -156,7 +156,7 @@
       left: 15%;
       height: 70%;
 
-      button {
+      > a {
         color: #000;
         background-color: #fff;
         font-size: 12px;

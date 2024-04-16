@@ -29,7 +29,7 @@ const HomePageCollectionsGrid = () => {
               <h3>{cat}</h3>
               <p>Fashion</p>
             </div>
-            <button>SHOP NOW</button>
+            <a href={`/collections/${cat}`}>SHOP NOW</a>
           </div>
         </div>
       ))}

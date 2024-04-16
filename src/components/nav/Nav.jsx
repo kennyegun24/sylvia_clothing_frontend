@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import "./nav.css";
 import { CiShoppingCart, CiSearch } from "react-icons/ci";
 import {
@@ -29,98 +29,32 @@ const Nav = () => {
   const logoutUser = () => {
     dispatch(logout());
   };
-  return (
-    // <div className="flex column sticky gap1rem big_nav_container">
-    //   <nav className="nav_container flex justify_center">
-    //     <div className="footer_sub_container flex justify_between align_center">
-    //       <section className="flex gap2rem align_center nav_menu">
-    //         <a href="/">
-    //           <img className="logo" src={logo} alt="" />
-    //         </a>
-    //       </section>
-    //       <section className="gap2rem align_center mobile_view">
-    //         <FaBars onClick={showHide} className="font20" />
-    //         <a href="/">
-    //           <img className="logo" src={logo} alt="" />
-    //         </a>
-    //       </section>
-    //       <section
-    //         className={` ${toggle && "show_menu"} mobile_nav_menu_container`}
-    //       >
-    //         <div className="flex monile_nav_menu justify_between">
-    //           <div className="flex gap2rem column">
-    //             <div className="relative">
-    //               <button
-    //                 className="font18 pointer background_none flex gap05rem align_center relative"
-    //                 onClick={() => setShowCollections((prev) => !prev)}
-    //               >
-    //                 Collections
-    //                 <IoMdArrowDropdown />
-    //               </button>
-    //               {showCollections && (
-    //                 <div className="collections_hover_div2">
-    //                   <CategoriesHover />
-    //                 </div>
-    //               )}
-    //             </div>
+  const buttonRef = useRef(null);
+  const menuRef = useRef(null);
 
-    //             {!currentUser ? (
-    //               <Link className="font15 login_btn" to="/login">
-    //                 Login
-    //               </Link>
-    //             ) : (
-    //               <button onClick={logout} className="font15 login_btn pointer">
-    //                 Logout
-    //               </button>
-    //             )}
-    //           </div>
-    //           <div className="flex gap1rem">
-    //             <FaInstagram className="font24" />
-    //             <FaFacebook className="font24" />
-    //           </div>
-    //         </div>
-    //       </section>
-    //       <section className="flex gap2rem nav_search_cart align_center">
-    //         <div className="relative">
-    //           <button
-    //             className="font15 desktop_navs pointer flex gap05rem align_center relative"
-    //             onClick={() => setShowCollections((prev) => !prev)}
-    //           >
-    //             Collections
-    //             <IoMdArrowDropdown />
-    //           </button>
-    //           {showCollections && (
-    //             <div className="collections_hover_div">
-    //               <CategoriesHover />
-    //             </div>
-    //           )}
-    //         </div>
-    //         <a className="font15 desktop_navs" href="/">
-    //           Products
-    //         </a>
-    //         <CiSearch className="font20" />
-    //         <div className="cart_icon">
-    //           <CiShoppingCart className="font20 pointer" onClick={toggleCart} />
-    //           <p className="cart_no_of_items flex justify_center align_center">
-    //             {products.length}
-    //           </p>
-    //         </div>
-    //         {!currentUser ? (
-    //           <Link className="font15 login_btn hide_login_logout" to="/login">
-    //             Login
-    //           </Link>
-    //         ) : (
-    //           <button
-    //             onClick={logoutUser}
-    //             className="font15 hide_login_logout login_btn pointer"
-    //           >
-    //             Logout
-    //           </button>
-    //         )}
-    //       </section>
-    //     </div>
-    //   </nav>
-    // </div>
+  const handleMouseEnter = () => {
+    setShowCollections(true);
+  };
+
+  const handleClickOutside = (event) => {
+    if (
+      menuRef.current &&
+      !menuRef.current.contains(event.target) &&
+      buttonRef.current &&
+      !buttonRef.current.contains(event.target)
+    ) {
+      setShowCollections(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+  return (
     <>
       <nav class="nav">
         <h3>Welcome to our fashion store</h3>
@@ -168,7 +102,9 @@ const Nav = () => {
 
         <div class="navigations">
           <Link to={"/"}>Home</Link>
-          <p>Categories</p>
+          <p ref={buttonRef} onMouseEnter={handleMouseEnter}>
+            Categories
+          </p>
           <Link to={"/cart/checkout"}>Cart</Link>
           {!currentUser ? (
             <Link className="font15 login_btn hide_login_logout" to="/login">
@@ -183,9 +119,110 @@ const Nav = () => {
             </button>
           )}
         </div>
+        {showCollections && (
+          <div
+            ref={menuRef}
+            className="collections_hover_div"
+            onMouseLeave={() => setShowCollections(false)}
+          >
+            <CategoriesHover />
+          </div>
+        )}
       </section>
     </>
   );
 };
 
 export default Nav;
+
+// <div className="flex column sticky gap1rem big_nav_container">
+//   <nav className="nav_container flex justify_center">
+//     <div className="footer_sub_container flex justify_between align_center">
+//       <section className="flex gap2rem align_center nav_menu">
+//         <a href="/">
+//           <img className="logo" src={logo} alt="" />
+//         </a>
+//       </section>
+//       <section className="gap2rem align_center mobile_view">
+//         <FaBars onClick={showHide} className="font20" />
+//         <a href="/">
+//           <img className="logo" src={logo} alt="" />
+//         </a>
+//       </section>
+//       <section
+//         className={` ${toggle && "show_menu"} mobile_nav_menu_container`}
+//       >
+//         <div className="flex monile_nav_menu justify_between">
+//           <div className="flex gap2rem column">
+//             <div className="relative">
+//               <button
+//                 className="font18 pointer background_none flex gap05rem align_center relative"
+//                 onClick={() => setShowCollections((prev) => !prev)}
+//               >
+//                 Collections
+//                 <IoMdArrowDropdown />
+//               </button>
+//               {showCollections && (
+//                 <div className="collections_hover_div2">
+//                   <CategoriesHover />
+//                 </div>
+//               )}
+//             </div>
+
+//             {!currentUser ? (
+//               <Link className="font15 login_btn" to="/login">
+//                 Login
+//               </Link>
+//             ) : (
+//               <button onClick={logout} className="font15 login_btn pointer">
+//                 Logout
+//               </button>
+//             )}
+//           </div>
+//           <div className="flex gap1rem">
+//             <FaInstagram className="font24" />
+//             <FaFacebook className="font24" />
+//           </div>
+//         </div>
+//       </section>
+//       <section className="flex gap2rem nav_search_cart align_center">
+//         <div className="relative">
+//           <button
+//             className="font15 desktop_navs pointer flex gap05rem align_center relative"
+//             onClick={() => setShowCollections((prev) => !prev)}
+//           >
+//             Collections
+//             <IoMdArrowDropdown />
+//           </button>
+//           {showCollections && (
+//             <div className="collections_hover_div">
+//               <CategoriesHover />
+//             </div>
+//           )}
+//         </div>
+//         <a className="font15 desktop_navs" href="/">
+//           Products
+//         </a>
+//         <CiSearch className="font20" />
+//         <div className="cart_icon">
+//           <CiShoppingCart className="font20 pointer" onClick={toggleCart} />
+//           <p className="cart_no_of_items flex justify_center align_center">
+//             {products.length}
+//           </p>
+//         </div>
+//         {!currentUser ? (
+//           <Link className="font15 login_btn hide_login_logout" to="/login">
+//             Login
+//           </Link>
+//         ) : (
+//           <button
+//             onClick={logoutUser}
+//             className="font15 hide_login_logout login_btn pointer"
+//           >
+//             Logout
+//           </button>
+//         )}
+//       </section>
+//     </div>
+//   </nav>
+// </div>
