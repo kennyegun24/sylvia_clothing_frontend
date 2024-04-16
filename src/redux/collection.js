@@ -4,7 +4,7 @@ export const getAllCategories = createAsyncThunk(
   "category/category",
   async () => {
     const res = await fetch(
-      "https://bk-fabrics-server.vercel.app//api/categories/all"
+      "https://bk-fabrics-server.vercel.app/api/categories/all"
     );
     const data = await res.json();
     return data;

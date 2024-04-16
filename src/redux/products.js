@@ -4,7 +4,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const getAllProducts = createAsyncThunk(
   "products/all/products",
   async () => {
-    const res = await fetch(`http://localhost:4000/api/product/all`);
+    const res = await fetch(
+      `https://bk-fabrics-server.vercel.app/api/product/all`
+    );
     const data = await res.json();
     return data;
   }
@@ -32,7 +34,7 @@ export const getTopRatedProducts = createAsyncThunk(
   "products/top_rated",
   async () => {
     const res = await fetch(
-      `http://localhost:4000/api/product/all?top_rated=${true}`
+      `https://bk-fabrics-server.vercel.app/api/product/all?top_rated=${true}`
     );
     const data = await res.json();
     return data;
@@ -44,7 +46,7 @@ export const getBestSellingProducts = createAsyncThunk(
   "products/best_selling",
   async () => {
     const res = await fetch(
-      `http://localhost:4000/api/product/all?most_sold=${true}`
+      `https://bk-fabrics-server.vercel.app/api/product/all?most_sold=${true}`
     );
     const data = await res.json();
     return data;
