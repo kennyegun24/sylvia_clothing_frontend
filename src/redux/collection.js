@@ -3,7 +3,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 export const getAllCategories = createAsyncThunk(
   "category/category",
   async () => {
-    const res = await fetch("http://localhost:4000/api/categories/all");
+    const res = await fetch(
+      "https://bk-fabrics-server.vercel.app//api/categories/all"
+    );
     const data = await res.json();
     return data;
   }
