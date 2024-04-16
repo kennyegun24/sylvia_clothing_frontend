@@ -14,7 +14,9 @@ export const getAllProducts = createAsyncThunk(
 
 // one product
 export const getOneProduct = createAsyncThunk("products/1", async (id) => {
-  const res = await fetch(`http://localhost:4000/api/product/${id}`);
+  const res = await fetch(
+    `https://bk-fabrics-server.vercel.app/api/product/${id}`
+  );
   const data = await res.json();
   return data;
 });

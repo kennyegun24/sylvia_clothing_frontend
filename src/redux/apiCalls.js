@@ -3,7 +3,7 @@ import { loginFailure, loginPending, loginSuccess } from "./user";
 import { resetOrder } from "./order";
 import { clearCart } from "./cart";
 import axios from "axios";
-const API_URL = "http://localhost:4000";
+const API_URL = "https://bk-fabrics-server.vercel.app";
 
 export const loginUser = async ({ email, password }, dispatch) => {
   try {
@@ -15,7 +15,7 @@ export const loginUser = async ({ email, password }, dispatch) => {
     };
 
     const axio = axios.create({
-      baseURL: "http://localhost:4000/api/",
+      baseURL: "https://bk-fabrics-server.vercel.app/api/",
     });
     const req = await axio.post("/auth/login", body);
     const data = await req.data;
@@ -39,7 +39,7 @@ export const createAccount = async (
   try {
     dispatch(loginPending(true));
     const axio = axios.create({
-      baseURL: "http://localhost:4000/api/",
+      baseURL: "https://bk-fabrics-server.vercel.app/api/",
     });
     const req = await axio.post("/auth/register", body);
     const data = await req.data;
@@ -54,7 +54,7 @@ export const make_payment = async (products, token, id) => {
 
   try {
     const req = await fetch(
-      "http://localhost:4000/api/payment/create-checkout-session",
+      "https://bk-fabrics-server.vercel.app/api/payment/create-checkout-session",
       {
         method: "POST",
         headers: {
@@ -87,7 +87,7 @@ export const makeOrder = async (products, token, userDetails, dispatch) => {
     };
 
     const axio = axios.create({
-      baseURL: "http://localhost:4000/api/",
+      baseURL: "https://bk-fabrics-server.vercel.app/api/",
       headers: {
         token: `Bearer ${token}`,
       },

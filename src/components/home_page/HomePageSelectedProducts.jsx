@@ -11,8 +11,8 @@ const HomePageSelectedProducts = ({ products }) => {
           />
           <div class="selected_product_section_item_price">
             <h4>{product.product_name}</h4>
-            <p>{product.in_stock}</p>
             <p>${product.price}</p>
+            <p>{product.in_stock}</p>
           </div>
         </div>
       ))}
