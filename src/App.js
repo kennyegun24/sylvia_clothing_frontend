@@ -16,6 +16,7 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import { Toaster } from "sonner";
 import { useState } from "react";
+import Search from "./pages/search/Seach";
 
 function App() {
   const { currentUser } = useSelector((state) => state.user);
@@ -31,6 +32,7 @@ function App() {
           <Routes>
             <Route index element={<Home />} />
             <Route path="/collections" element={<Collections />} />
+            <Route path="/products/search" element={<Search />} />
             <Route path="/collections/:name" element={<CollectionProducts />} />
             <Route
               path="/collections/:name/:product/:id"

@@ -65,28 +65,20 @@ const Products = () => {
             <CiFilter />
           </p>
         </div>
-        <section className="flex gap05rem margin_top_1rem wrap">
+        <section className="searched_item_container">
           {prods
             .filter((a, b) => a.price >= minVal && a.price <= maxVal)
             .map((cat, _index) => (
-              <div className="product_card collection_prod flex column justify_between">
-                <Link
-                  className="color_initial"
-                  to={`${cat.product_name}/${cat._id}`}
-                >
-                  <ProductCard cat={cat} />
-                </Link>
-                <div className="width100 flex justify_center">
-                  <button
-                    className={`padding05rem width90 pointer ${
-                      cat.in_stock > 0 ? "in_stock" : "out_stock"
-                    }`}
-                    onClick={() => addItem(cat)}
-                  >
-                    {cat.in_stock > 0 ? "Add to cart" : "Out of stock"}
-                  </button>
-                </div>
-              </div>
+              <>
+                {/* // <div className="product_card collection_prod flex column justify_between">
+                // <Link
+                //   className="color_initial"
+                //   to={`${cat.product_name}/${cat._id}`}
+                // > */}
+                <ProductCard cat={cat} />
+                {/* // </Link> */}
+              </>
+              // </div>
             ))}
         </section>
       </div>

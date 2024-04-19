@@ -1,14 +1,34 @@
 import React from "react";
 import "./styles.css";
+import { FaStar } from "react-icons/fa";
 
 const ProductCard = ({ cat }) => {
   return (
     <div className="flex column justify_between height100 width100">
       <div className="width100">
-        <img src={cat.product_image} alt="" />
-        <p className="font18 fontW700">{cat.product_name}</p>
-        <p className="font16">${cat.price}</p>
-        <p className="font16">{cat.in_stock} in stock</p>
+        <div className="img_div">
+          <img src={cat.product_image} alt="" />
+        </div>
+        <div className="flex column padding05rem">
+          <div className="star_div">
+            <FaStar className="product_star" color="#ff9d00" />
+            <p>4 stars (124)</p>
+          </div>
+          <p className="font16 fontW700">{cat.product_name}</p>
+          <p className="font18">${cat.price}</p>
+          <p className="font16">{cat.in_stock} in stock</p>
+        </div>
+      </div>
+
+      <div className="width100 flex justify_center">
+        <button
+          className={`padding05rem width90 pointer ${
+            cat.in_stock > 0 ? "in_stock" : "out_stock"
+          }`}
+          // onClick={() => addItem(cat)}
+        >
+          {cat.in_stock > 0 ? "Add to cart" : "Out of stock"}
+        </button>
       </div>
     </div>
   );

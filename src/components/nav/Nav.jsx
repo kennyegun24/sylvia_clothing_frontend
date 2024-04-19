@@ -60,9 +60,9 @@ const Nav = () => {
         <h3>Welcome to our fashion store</h3>
 
         <div>
-          <p>
+          <Link to={"/products/search"} className="search_icon">
             <CiSearch className="font20 pointer" />
-          </p>
+          </Link>
           <div className="cart_icon">
             <CiShoppingCart className="font20 pointer" onClick={toggleCart} />
             <p className="cart_no_of_items flex justify_center align_center">

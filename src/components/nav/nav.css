@@ -210,6 +210,9 @@
     margin: 0 0 0 auto;
   }
 
+  .search_icon {
+    color: #fff;
+  }
   .cart_icon {
     position: relative;
 

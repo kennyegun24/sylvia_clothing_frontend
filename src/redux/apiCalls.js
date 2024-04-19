@@ -66,16 +66,21 @@ export const make_payment = async (products, token, id) => {
     );
 
     const session = await req.json();
-    const stripe_promise = await loadStripe(session.pub_key);
-    const result = stripe_promise.redirectToCheckout({
-      sessionId: session.id,
-    });
+    if (session?.pub_key) {
+      console.log(session);
+      const stripe_promise = await loadStripe(session.pub_key);
+      const result = stripe_promise.redirectToCheckout({
+        sessionId: session.id,
+      });
 
-    if ((await result).error) {
-      alert((await result).error);
+      if ((await result).error) {
+        // alert((await result).error);
+        console.log("error");
+      }
     }
   } catch (error) {
-    alert(error);
+    // alert(error);
+    console.log("error");
   }
 };
 

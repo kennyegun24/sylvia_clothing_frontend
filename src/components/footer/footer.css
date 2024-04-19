@@ -1,5 +1,6 @@
 .footer {
-  background-color: #e1cde4;
+  background-color: #000;
+  color: #fff;
   /* background-color: #eebec0; */
   padding: 5% 0;
   .footer_links {
@@ -13,18 +14,21 @@
       }
       a {
         font-size: 13px;
-        color: #111;
+        color: #fff;
         letter-spacing: 1px;
       }
     }
   }
   .footer_line {
-    border: 0.2px solid #facaf8;
+    border: 0.2px solid #a0a0a0;
     outline: none;
     opacity: 0.4;
   }
   .footer_bottom {
     gap: 1rem;
+    a {
+      color: #fff;
+    }
   }
 }
 

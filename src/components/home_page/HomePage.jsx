@@ -16,9 +16,8 @@ const HomePage = () => {
     topRated: false,
     mostSold: false,
   });
-  const { newProducts, bestSellingProducts, topRatedProducts } = useSelector(
-    (state) => state.products
-  );
+  const { newProducts, bestSellingProducts, topRatedProducts, status } =
+    useSelector((state) => state.products);
   useEffect(() => {
     dataToFetch.mostSold
       ? dispatch(getBestSellingProducts())
@@ -83,6 +82,7 @@ const HomePage = () => {
                 ? newProducts
                 : topRatedProducts
             }
+            status={status}
           />
         </div>
       </section>

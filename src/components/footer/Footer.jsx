@@ -32,20 +32,20 @@ const Footer = () => {
           </section>
         </div>
         <div className="flex gap1rem">
-          <FaWhatsapp/>
+          <FaWhatsapp />
           <FaInstagram />
           <FaFacebook />
         </div>
         <hr className="width100 footer_line" />
         <div className="flex align_center footer_bottom">
           <p className="font10">&copy; 2024, BK CLOTHINGS</p>
-          <a href="/" className="font10 black_text">
+          <a href="/" className="font10">
             Return policy
           </a>
-          <a href="/" className="font10 black_text">
+          <a href="/" className="font10">
             Privacy policy
           </a>
-          <a href="/" className="font10 black_text">
+          <a href="/" className="font10">
             Terms of Service
           </a>
         </div>

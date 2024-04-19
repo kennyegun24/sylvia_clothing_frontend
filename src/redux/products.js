@@ -69,6 +69,26 @@ const productsSlice = createSlice({
   reducers: {},
   extraReducers: (reduce) => {
     reduce
+      .addCase(getAllProducts.pending, (state, action) => {
+        const isFulfilled = state;
+        isFulfilled.status = "Pending";
+      })
+      .addCase(getOneProduct.pending, (state, action) => {
+        const isFulfilled = state;
+        isFulfilled.status = "Pending";
+      })
+      .addCase(getNewProducts.pending, (state, action) => {
+        const isFulfilled = state;
+        isFulfilled.status = "Pending";
+      })
+      .addCase(getTopRatedProducts.pending, (state, action) => {
+        const isFulfilled = state;
+        isFulfilled.status = "Pending";
+      })
+      .addCase(getBestSellingProducts.pending, (state, action) => {
+        const isFulfilled = state;
+        isFulfilled.status = "Pending";
+      })
       .addCase(getAllProducts.fulfilled, (state, action) => {
         const isFulfilled = state;
         isFulfilled.status = "Fulfilled";
