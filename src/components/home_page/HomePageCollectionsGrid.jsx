@@ -6,9 +6,10 @@ import image4 from "../../assets/collection4.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories } from "../../redux/collection";
 import "./collection.css";
+import GridSkeleton from "../skeleton/GridSkeleton";
 
 const HomePageCollectionsGrid = () => {
-  const { categories } = useSelector((state) => state.collections);
+  const { categories, finished } = useSelector((state) => state.collections);
   const [collection, setCollection] = useState(categories);
   const dispatch = useDispatch();
 
@@ -18,22 +19,28 @@ const HomePageCollectionsGrid = () => {
   }, [categories]);
   const images = ["", image1, image2, image3, image4];
   return (
-    <section class="grid_container">
-      {collection?.slice(0, 4)?.map((cat, _ind) => (
-        <div class="grid1">
-          {_ind !== 0 && <img src={images[_ind]} alt="" />}
-          <div class="grid1_textx">
-            <p>Fabrics Collection</p>
+    <>
+      {finished ? (
+        <section class="grid_container">
+          {collection?.slice(0, 4)?.map((cat, _ind) => (
+            <div class="grid1">
+              {_ind !== 0 && <img src={images[_ind]} alt="" />}
+              <div class="grid1_textx">
+                <p>Fabrics Collection</p>
 
-            <div class="grid1_cta">
-              <h3>{cat}</h3>
-              <p>Fashion</p>
+                <div class="grid1_cta">
+                  <h3>{cat}</h3>
+                  <p>Fashion</p>
+                </div>
+                <a href={`/collections/${cat}`}>SHOP NOW</a>
+              </div>
             </div>
-            <a href={`/collections/${cat}`}>SHOP NOW</a>
-          </div>
-        </div>
-      ))}
-    </section>
+          ))}
+        </section>
+      ) : (
+        <GridSkeleton />
+      )}
+    </>
   );
 };
 

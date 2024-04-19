@@ -28,22 +28,30 @@ const categorySlice = createSlice({
     categories: [],
     collection: [],
     oneCategory: [],
-    status: false,
+    finished: true,
   },
   reducers: {},
   extraReducers: (reduce) => {
     reduce
       .addCase(getAllCategories.fulfilled, (state, action) => {
         const isFulfilled = state;
-        isFulfilled.status = "Fulfilled";
+        isFulfilled.finished = true;
+        console.log("first");
         isFulfilled.categories = action.payload;
-        console.log(action.payload);
       })
       .addCase(getCategory.fulfilled, (state, action) => {
         const isFulfilled = state;
-        isFulfilled.status = "Fulfilled";
+        isFulfilled.finished = true;
         const dataJson = action.payload;
         isFulfilled.collection = dataJson;
+      })
+      .addCase(getAllCategories.pending, (state) => {
+        const isFulfilled = state;
+        isFulfilled.finished = false;
+      })
+      .addCase(getCategory.pending, (state) => {
+        const isFulfilled = state;
+        isFulfilled.finished = false;
       });
   },
 });
