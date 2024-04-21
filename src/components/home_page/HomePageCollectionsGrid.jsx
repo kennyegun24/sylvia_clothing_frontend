@@ -9,15 +9,20 @@ import "./collection.css";
 import GridSkeleton from "../skeleton/GridSkeleton";
 
 const HomePageCollectionsGrid = () => {
+  const dispatch = useDispatch();
   const { categories, finished } = useSelector((state) => state.collections);
   const [collection, setCollection] = useState(categories);
-  const dispatch = useDispatch();
+  const images = ["", image1, image2, image3, image4];
 
   useEffect(() => {
-    if (categories.length < 1) dispatch(getAllCategories());
-    setCollection(categories);
-  }, [categories]);
-  const images = ["", image1, image2, image3, image4];
+    if (!finished) {
+      dispatch(getAllCategories());
+    } else {
+      setCollection(categories);
+      console.log(categories);
+    }
+  }, [finished]);
+
   return (
     <>
       {finished ? (

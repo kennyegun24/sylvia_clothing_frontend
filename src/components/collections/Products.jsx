@@ -44,17 +44,6 @@ const Products = () => {
     }
   }, [advFilter, collection]);
 
-  const addItem = (product) => {
-    dispatch(
-      itemAdded({
-        id: product._id,
-        product: { ...product, price: product.price },
-        quantity: 1,
-        price: product.price * 1,
-      })
-    );
-  };
-
   return (
     <div>
       <div className="category_product_container flex column align_center">

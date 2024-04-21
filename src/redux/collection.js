@@ -7,6 +7,7 @@ export const getAllCategories = createAsyncThunk(
       "https://bk-fabrics-server.vercel.app/api/categories/all"
     );
     const data = await res.json();
+    console.log("data");
     return data;
   }
 );
@@ -28,16 +29,15 @@ const categorySlice = createSlice({
     categories: [],
     collection: [],
     oneCategory: [],
-    finished: true,
+    finished: false,
   },
   reducers: {},
   extraReducers: (reduce) => {
     reduce
       .addCase(getAllCategories.fulfilled, (state, action) => {
         const isFulfilled = state;
-        isFulfilled.finished = true;
-        console.log("first");
         isFulfilled.categories = action.payload;
+        isFulfilled.finished = true;
       })
       .addCase(getCategory.fulfilled, (state, action) => {
         const isFulfilled = state;

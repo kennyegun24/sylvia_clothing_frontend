@@ -8,6 +8,7 @@ import {
 import HomePageSelectedProducts from "./HomePageSelectedProducts";
 import SliderImage from "./SliderImage";
 import HomePageCollectionsGrid from "./HomePageCollectionsGrid";
+import { getAllCategories } from "../../redux/collection";
 
 const HomePage = () => {
   const dispatch = useDispatch();

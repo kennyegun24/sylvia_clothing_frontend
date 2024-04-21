@@ -1,8 +1,21 @@
 import React from "react";
 import "./styles.css";
 import { FaStar } from "react-icons/fa";
+import { itemAdded } from "../../redux/cart";
+import { useDispatch } from "react-redux";
 
 const ProductCard = ({ cat }) => {
+  const dispatch = useDispatch();
+  const addItem = (product) => {
+    dispatch(
+      itemAdded({
+        id: product._id,
+        product: { ...product, price: product.price },
+        quantity: 1,
+        price: product.price * 1,
+      })
+    );
+  };
   return (
     <div className="flex column justify_between height100 width100">
       <div className="width100">
@@ -25,7 +38,7 @@ const ProductCard = ({ cat }) => {
           className={`padding05rem width90 pointer ${
             cat.in_stock > 0 ? "in_stock" : "out_stock"
           }`}
-          // onClick={() => addItem(cat)}
+          onClick={() => addItem(cat)}
         >
           {cat.in_stock > 0 ? "Add to cart" : "Out of stock"}
         </button>
