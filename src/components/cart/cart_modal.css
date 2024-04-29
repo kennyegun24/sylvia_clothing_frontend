@@ -1,7 +1,7 @@
 .cart_modal_container {
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: flex-end;
@@ -15,16 +15,16 @@
     border-radius: 1rem;
     background: #fff;
     height: 100%;
-    overflow-y: auto;
     padding: 0 0 1rem 0;
 
     .card_header {
-      background: #e6abf5;
-      /* background: #eebec0; */
+      background: #000;
       text-align: center;
       position: sticky;
       top: 0;
       width: 100%;
+      color: #fff;
+      height: fit-content;
 
       .cart_hide_icon {
         position: absolute;
@@ -35,9 +35,23 @@
       }
     }
 
+    .mrb {
+      margin-bottom: 1rem;
+    }
     .cart_items {
       padding: 1rem;
+      height: 50%;
+      overflow-y: auto;
       width: 100%;
+
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #111;
+      }
+
       .cart_item {
         width: 100%;
         .cart_image {
@@ -68,14 +82,17 @@
 
     .sub_total {
       width: 100%;
+      overflow: hidden;
       h3 {
         font-size: 20px;
       }
     }
     .checkout_btn {
       border: none;
-      background: #e6abf5;
+      background: #000;
+      color: #fff;
       /* background: #eebec0; */
+      overflow: hidden;
     }
     .visa_mastarcard {
       background: linear-gradient(to right, #f4f4f4, #a5a5a5);

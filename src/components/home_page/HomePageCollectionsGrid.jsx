@@ -19,7 +19,6 @@ const HomePageCollectionsGrid = () => {
       dispatch(getAllCategories());
     } else {
       setCollection(categories);
-      console.log(categories);
     }
   }, [finished]);
 

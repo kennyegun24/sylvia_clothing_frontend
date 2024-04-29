@@ -53,9 +53,13 @@ const CartModal = () => {
           />
         </section>
         <hr />
-        <section className="cart_items flex column width100 gap15rem">
+        <section className="cart_items">
           {items.map((item, _index) => (
-            <section className="cart_item flex gap1rem">
+            <section
+              className={`cart_item flex gap1rem ${
+                _index != items.length - 1 && "mrb"
+              }`}
+            >
               <img
                 src={item.product.product_image}
                 className="cart_image"

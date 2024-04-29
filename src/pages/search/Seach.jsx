@@ -1,92 +1,76 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./search.css";
 import { CiSearch } from "react-icons/ci";
 import ProductCard from "../../components/items/ProductCard";
 import ItemSkeleton from "../../components/skeleton/ItemSkeleton";
+// import {usePathname} f
 const Search = () => {
-  const data = [
-    {
-      in_stock: 3,
-      price: 39.99,
-      product_name: "Ashanti people fabric",
-      product_image:
-        "https://imgs.search.brave.com/bTDo63heywR71-7lR_ZGtmAhn3pZR2bCDeDBH1CWDBQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9waWNr/ZXJ3aGVlbC5jb20v/c3RhdGljLzJmZjk5/MWYxYmNmZTJjOWYz/MjlkMDE4ZGM3MTRk/ZWJlL2E0ZDg4L2lt/YWdlLWNlcnQucG5n",
-    },
-    {
-      in_stock: 3,
-      price: 39.99,
-      product_name: "Ashanti people fabric",
-      product_image:
-        "https://imgs.search.brave.com/bTDo63heywR71-7lR_ZGtmAhn3pZR2bCDeDBH1CWDBQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9waWNr/ZXJ3aGVlbC5jb20v/c3RhdGljLzJmZjk5/MWYxYmNmZTJjOWYz/MjlkMDE4ZGM3MTRk/ZWJlL2E0ZDg4L2lt/YWdlLWNlcnQucG5n",
-    },
-    {
-      in_stock: 3,
-      price: 39.99,
-      product_name: "Ashanti people fabric",
-      product_image:
-        "https://imgs.search.brave.com/bTDo63heywR71-7lR_ZGtmAhn3pZR2bCDeDBH1CWDBQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9waWNr/ZXJ3aGVlbC5jb20v/c3RhdGljLzJmZjk5/MWYxYmNmZTJjOWYz/MjlkMDE4ZGM3MTRk/ZWJlL2E0ZDg4L2lt/YWdlLWNlcnQucG5n",
-    },
-    {
-      in_stock: 3,
-      price: 39.99,
-      product_name: "Ashanti people fabric",
-      product_image:
-        "https://imgs.search.brave.com/bTDo63heywR71-7lR_ZGtmAhn3pZR2bCDeDBH1CWDBQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9waWNr/ZXJ3aGVlbC5jb20v/c3RhdGljLzJmZjk5/MWYxYmNmZTJjOWYz/MjlkMDE4ZGM3MTRk/ZWJlL2E0ZDg4L2lt/YWdlLWNlcnQucG5n",
-    },
-    {
-      in_stock: 3,
-      price: 39.99,
-      product_name: "Ashanti people fabric",
-      product_image:
-        "https://imgs.search.brave.com/bTDo63heywR71-7lR_ZGtmAhn3pZR2bCDeDBH1CWDBQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9waWNr/ZXJ3aGVlbC5jb20v/c3RhdGljLzJmZjk5/MWYxYmNmZTJjOWYz/MjlkMDE4ZGM3MTRk/ZWJlL2E0ZDg4L2lt/YWdlLWNlcnQucG5n",
-    },
-    {
-      in_stock: 3,
-      price: 39.99,
-      product_name: "Ashanti people fabric",
-      product_image:
-        "https://imgs.search.brave.com/bTDo63heywR71-7lR_ZGtmAhn3pZR2bCDeDBH1CWDBQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9waWNr/ZXJ3aGVlbC5jb20v/c3RhdGljLzJmZjk5/MWYxYmNmZTJjOWYz/MjlkMDE4ZGM3MTRk/ZWJlL2E0ZDg4L2lt/YWdlLWNlcnQucG5n",
-    },
-    {
-      in_stock: 3,
-      price: 39.99,
-      product_name: "Ashanti people fabric",
-      product_image:
-        "https://imgs.search.brave.com/bTDo63heywR71-7lR_ZGtmAhn3pZR2bCDeDBH1CWDBQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9waWNr/ZXJ3aGVlbC5jb20v/c3RhdGljLzJmZjk5/MWYxYmNmZTJjOWYz/MjlkMDE4ZGM3MTRk/ZWJlL2E0ZDg4L2lt/YWdlLWNlcnQucG5n",
-    },
-    {
-      in_stock: 3,
-      price: 39.99,
-      product_name: "Ashanti people fabric",
-      product_image:
-        "https://imgs.search.brave.com/bTDo63heywR71-7lR_ZGtmAhn3pZR2bCDeDBH1CWDBQ/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9waWNr/ZXJ3aGVlbC5jb20v/c3RhdGljLzJmZjk5/MWYxYmNmZTJjOWYz/MjlkMDE4ZGM3MTRk/ZWJlL2E0ZDg4L2lt/YWdlLWNlcnQucG5n",
-    },
-  ];
+  const [searchedProducts, setSearchedProducts] = useState([]);
+  const [text, setText] = useState("");
+  const [loading, setLoading] = useState(false);
+  const pathName = window.location.search;
+  const splitPath = pathName.split("=");
+  const path = splitPath[splitPath.length - 1];
+  const splitPercent = path.split("%20").join(" ");
+
+  const search = async () => {
+    window.location.replace(`/products/search?s=${text}`);
+  };
+
+  useEffect(() => {
+    const search = async () => {
+      try {
+        if (splitPercent != "" && splitPercent != null) {
+          setLoading(true);
+          const req = await fetch(
+            `https://bk-fabrics-server.vercel.app/api/product/search/${splitPercent}`
+          );
+          const data = await req.json();
+          setSearchedProducts(data);
+          setLoading(false);
+        }
+      } catch (error) {
+        setLoading(false);
+        alert("Try searching again");
+      }
+    };
+
+    search();
+    // alert("I am kenny");
+  }, [splitPercent != ""]);
+
   return (
     <section className="search_main_container">
       <section class="search_container">
         <div class="search_bar">
           <input
+            onSubmit={search}
             placeholder="Search for any product..."
             type="search"
             name=""
             id=""
+            onChange={(e) => setText(e.target.value)}
           />
-          <div className="search_icon_div pointer">
+          <div className="search_icon_div pointer" onClick={search}>
             <CiSearch className="font20 search_icon" />
           </div>
         </div>
       </section>
 
       <section className="search_text_container">
-        <h2>You searched for 'Indigo'</h2>
+        <h2>You searched for '{splitPercent}'</h2>
       </section>
-      {/* <section className="searched_item_container">
-        {data.map((data, _) => (
-          <ProductCard cat={data} />
-        ))}
-      </section> */}
-      <ItemSkeleton />
+      {searchedProducts.length > 0 && loading === false ? (
+        <section className="searched_item_container">
+          {searchedProducts.map((data, _) => (
+            <ProductCard cat={data} />
+          ))}
+        </section>
+      ) : loading === true && searchedProducts.length === 0 ? (
+        <ItemSkeleton />
+      ) : (
+        <p className="no_item">NO ITEM FOUND</p>
+      )}
     </section>
   );
 };

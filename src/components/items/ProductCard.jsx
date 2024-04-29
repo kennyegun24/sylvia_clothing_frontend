@@ -3,6 +3,7 @@ import "./styles.css";
 import { FaStar } from "react-icons/fa";
 import { itemAdded } from "../../redux/cart";
 import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ cat }) => {
   const dispatch = useDispatch();
@@ -18,7 +19,10 @@ const ProductCard = ({ cat }) => {
   };
   return (
     <div className="flex column justify_between height100 width100">
-      <div className="width100">
+      <Link
+        to={`/collections/${cat.categories[0]}/${cat.product_name}/${cat._id}`}
+        className="width100"
+      >
         <div className="img_div">
           <img src={cat.product_image} alt="" />
         </div>
@@ -31,7 +35,7 @@ const ProductCard = ({ cat }) => {
           <p className="font18">${cat.price}</p>
           <p className="font16">{cat.in_stock} in stock</p>
         </div>
-      </div>
+      </Link>
 
       <div className="width100 flex justify_center">
         <button

@@ -129,8 +129,8 @@ main {
     flex-wrap: wrap;
     gap: 2.5%;
 
-    .selected_product_section_item {
-      width: 18%;
+    /* .selected_product_section_item {
+      width: 100%;
       background-color: #ccc;
       margin-bottom: 1rem;
       color: #2f2f2f;
@@ -159,6 +159,20 @@ main {
           font-size: 18px;
         }
       }
-    }
+      > div {
+        > div:nth-child(2) {
+          width: 100%;
+          padding: 0.5rem;
+
+          button {
+            font-size: 12px;
+            border: none;
+            background: #000;
+            color: #fff;
+            border-radius: 9px;
+          }
+        }
+      }
+    } */
   }
 }

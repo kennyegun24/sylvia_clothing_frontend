@@ -18,6 +18,19 @@
 
       .search_icon_div {
         padding: 0.5rem 1rem;
+        transition: 0.4s ease-in-out all;
+        width: 11%;
+        border-radius: 0 1.2rem 1.2rem 0;
+      }
+
+      .search_icon_div:hover {
+        background-color: #000000;
+        transition: 0.4s ease-in-out all;
+
+        svg {
+          transition: 0.4s ease-in-out all;
+          color: #fff;
+        }
       }
 
       input {
@@ -58,10 +71,11 @@
     width: 100%;
     border-radius: 12px;
     border: 1px solid #ccc;
-    > div:nth-child(1) {
+    > a:nth-child(1) {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      color: initial;
       .img_div {
         background-color: #f4f4f4;
         height: 150px;
@@ -120,4 +134,13 @@
       }
     }
   }
+}
+
+.no_item {
+  font-size: 40px;
+  font-weight: 700;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
