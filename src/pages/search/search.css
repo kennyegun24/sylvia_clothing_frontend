@@ -61,7 +61,7 @@
 .searched_item_container {
   display: grid;
   grid-gap: 0.7rem;
-  grid-template-columns: repeat(auto-fill, minmax(19%, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 
   padding: 20px;
   width: 80%;
@@ -143,4 +143,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (min-width: 200px) and (max-width: 767px) {
+  .searched_item_container {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    padding: 10px;
+    width: 100%;
+    margin: 2rem auto;
+  }
 }

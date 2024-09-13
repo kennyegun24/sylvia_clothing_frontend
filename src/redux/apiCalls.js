@@ -80,7 +80,6 @@ export const make_payment = async (products, token, id) => {
     }
   } catch (error) {
     // alert(error);
-    console.log("error");
   }
 };
 
