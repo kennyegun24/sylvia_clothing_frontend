@@ -18,7 +18,7 @@ import userSlice from "./user";
 import orderSlice from "./order";
 
 const persistConfig = {
-  key: "root",
+  key: "syljajhf8eujdksnahiudbjwknn",
   version: 1,
   storage,
 };

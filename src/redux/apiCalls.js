@@ -8,7 +8,6 @@ const API_URL = "https://bk-fabrics-server.vercel.app";
 export const loginUser = async ({ email, password }, dispatch) => {
   try {
     dispatch(loginPending(true));
-    console.log(password);
     const body = {
       password: password,
       email: email,
@@ -49,9 +48,14 @@ export const createAccount = async (
   }
 };
 
-export const make_payment = async (products, token, id) => {
-  const body = { products: products };
-
+export const make_payment = async (
+  products,
+  token,
+  id,
+  countryName,
+  stateName
+) => {
+  const body = { products: products, country: countryName, state: stateName };
   try {
     const req = await fetch(
       "https://bk-fabrics-server.vercel.app/api/payment/create-checkout-session",
@@ -67,7 +71,6 @@ export const make_payment = async (products, token, id) => {
 
     const session = await req.json();
     if (session?.pub_key) {
-      console.log(session);
       const stripe_promise = await loadStripe(session.pub_key);
       const result = stripe_promise.redirectToCheckout({
         sessionId: session.id,
@@ -120,5 +123,20 @@ export const makeReview = async (token, product_id, rating) => {
     });
   } catch (error) {
     alert(error);
+  }
+};
+
+export const fetchShippingCost = async (country, state) => {
+  try {
+    const response = await axios.get(
+      `https://bk-fabrics-server.vercel.app/api/shipping/get-fee`,
+      {
+        params: { country, state },
+      }
+    );
+    return response.data.shippingFee; // Assuming the response contains the fee
+  } catch (error) {
+    console.error("Error fetching shipping cost:", error);
+    return 0; // Return 0 if there's an error or no fee found
   }
 };

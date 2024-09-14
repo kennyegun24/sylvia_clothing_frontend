@@ -60,11 +60,12 @@
 
 .pay_now_btn {
   background: #f0e4f1;
-  padding: 1rem;
+  /* padding: 1rem; */
   width: 100%;
   border-radius: 6px;
+  font-size: 14px;
   color: #111;
-  border: none;
+  /* border: none; */
 }
 
 .cart_product_preview_details_div > div > img {

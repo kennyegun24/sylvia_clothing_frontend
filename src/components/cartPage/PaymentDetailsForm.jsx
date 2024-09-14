@@ -1,13 +1,26 @@
-import React, { useState } from "react";
-import CustomInputs from "./CustomInputs";
+import React, { useEffect, useState } from "react";
 import "./styles.css";
 import PaymentOptions from "./PaymentOptions";
 import { make_payment } from "../../redux/apiCalls";
 import { useDispatch, useSelector } from "react-redux";
 import { addOrder } from "../../redux/order";
-const PaymentDetailsForm = () => {
+import { Button, Form, Input, Select } from "antd";
+import { countries } from "../../countries";
+const PaymentDetailsForm = ({
+  stateCode,
+  setStateCode,
+  countryCode,
+  setCountryCode,
+}) => {
   const { currentUser } = useSelector((state) => state.user);
   const { total, products } = useSelector((state) => state.cart);
+  const [countryList, setCountryList] = useState([]);
+  const [stateList, setStateList] = useState([]);
+  const [loading, setLoading] = useState({
+    countries: false,
+    states: false,
+  });
+
   const [userDetails, setUserDetails] = useState({
     userId: currentUser?._id,
     amount: total,
@@ -17,48 +30,66 @@ const PaymentDetailsForm = () => {
     phoneNumber: "",
     firstName: currentUser?.first_name,
     lastName: currentUser?.last_name,
-    country: "",
-    city: "",
     state: "",
     products: products,
   });
-  const [error, setError] = useState({});
   const dispatch = useDispatch();
   const updateText = (e) => {
     setUserDetails({ ...userDetails, [e.target.name]: e.target.value });
   };
 
   const submitOrder = () => {
-    const validationError = {};
-    if (!userDetails.address.trim()) {
-      validationError.address = "Your address must be filled";
-    }
-    if (!userDetails.city.trim()) {
-      validationError.city = "City must be filled";
-    }
-    if (!userDetails.postalCode.trim()) {
-      validationError.postalCode = "Postal Code is required";
-    }
-    if (!userDetails.state.trim()) {
-      validationError.state = "State is required";
-    }
-    if (!userDetails.country.trim()) {
-      validationError.country = "Country is required";
-    }
-    if (!userDetails.phoneNumber.trim()) {
-      validationError.phoneNumber = "Phone number is required";
-    }
-    setError(validationError);
+    dispatch(
+      addOrder({
+        ...userDetails,
+        country: countryCode.label,
+        state: stateCode.label,
+      })
+    );
+    make_payment(
+      products,
+      currentUser?.access_token,
+      currentUser?._id,
+      countryCode.label,
+      stateCode.label
+    );
+  };
 
-    if (Object.entries(validationError).length === 0) {
-      dispatch(addOrder(userDetails));
-      // alert("success");
-      make_payment(products, currentUser?.access_token, currentUser?._id);
+  useEffect(() => {
+    setLoading((prev) => ({ ...prev, countries: true }));
+    setCountryList(countries);
+    setLoading((prev) => ({ ...prev, countries: false }));
+  }, []);
+  const handleCountryChange = (value, e) => {
+    setCountryCode(e);
+    setStateList([]);
+  };
+
+  const handleStateChange = (value, e) => {
+    setStateCode(e);
+  };
+
+  const onStatesFocus = async () => {
+    setLoading((prev) => ({ ...prev, states: true }));
+    const { states } = await import("../../states");
+    const selectedCountry = states?.find(
+      (state) => state.country.toLowerCase() === countryCode.value
+    );
+    if (selectedCountry) {
+      setStateList(
+        selectedCountry.states || [
+          {
+            label: "No State Found",
+            value: "Nan",
+          },
+        ]
+      );
     }
+    setLoading((prev) => ({ ...prev, states: false }));
   };
 
   return (
-    <div className="flex column gap3rem width100">
+    <Form onFinish={submitOrder} className="flex column gap3rem width100">
       <section className="flex column gap1rem">
         <h2>Contact</h2>
 
@@ -75,18 +106,6 @@ const PaymentDetailsForm = () => {
       </section>
       <div className="flex column gap1rem width100">
         <h2>Delivery</h2>
-        <div className="width100">
-          <CustomInputs
-            styles={{
-              width: "width100",
-              placeHolder: "Country...",
-              type: "text",
-              name: "country",
-            }}
-            updateText={updateText}
-          />
-          <p className="font12 red">{error.country}</p>
-        </div>
         <div className="flex justify_between align_start width100">
           <div className="width45">
             <input
@@ -113,67 +132,131 @@ const PaymentDetailsForm = () => {
             />
           </div>
         </div>
-        <div className="width100">
-          <CustomInputs
-            styles={{
-              width: "width100",
-              placeHolder: "Address...",
-              type: "text",
-              name: "address",
-            }}
-            updateText={updateText}
+        <Form.Item
+          required
+          rules={[
+            { required: true, message: "Address field should not be empty" },
+          ]}
+          name="address"
+          style={{ width: "100%", marginBottom: 0 }}
+        >
+          <Input
+            autoComplete="false"
+            name="address"
+            placeholder="Address..."
+            type="text"
+            onChange={updateText}
+            style={{ width: "100%", padding: "0.75rem 1rem" }}
           />
-          <p className="font12 red">{error.address}</p>
+        </Form.Item>
+        <div
+          className="width100 flex justify_between align_center"
+          style={{ height: "fit-content", margin: 0, padding: 0 }}
+        >
+          <Form.Item
+            required
+            rules={[{ required: true, message: "Select your country" }]}
+            name="country"
+            style={{ width: "45%", marginBottom: 0 }}
+          >
+            <Select
+              style={{ height: "3rem" }}
+              onChange={handleCountryChange}
+              placeholder="Select Country"
+              options={countryList.map((country) => ({
+                label: country.name,
+                value: country.alpha2,
+              }))}
+              showSearch
+              loading={loading.countries}
+              filterOption={(input, option) =>
+                (option?.label ?? "")
+                  .toLowerCase()
+                  .includes(input.toLowerCase())
+              }
+            />
+          </Form.Item>
+
+          <Form.Item
+            required
+            name={"states"}
+            rules={[{ required: true, message: "States should be selected" }]}
+            style={{ width: "45%", marginBottom: 0 }}
+          >
+            <Select
+              style={{
+                height: "3rem",
+              }}
+              onChange={handleStateChange}
+              options={stateList.map((state) => ({
+                label: state.name,
+                value: state.code,
+              }))}
+              loading={loading.states}
+              onFocus={onStatesFocus}
+              filterOption={(input, option) =>
+                (option?.label ?? "")
+                  .toLowerCase()
+                  .includes(input.toLowerCase())
+              }
+              showSearch
+              placeholder="Select State"
+            />
+          </Form.Item>
         </div>
         <div className="flex justify_between align_start width100">
-          <div className="width30">
-            <CustomInputs
-              styles={{
-                width: "width100",
-                placeHolder: "City...",
-                type: "text",
-                name: "city",
-              }}
-              updateText={updateText}
+          <Form.Item
+            required
+            rules={[
+              { required: true, message: "City field should not be empty" },
+            ]}
+            name="city"
+            style={{ width: "30%", marginBottom: 0 }}
+          >
+            <Input
+              autoComplete="false"
+              name="city"
+              placeholder="City..."
+              type="text"
+              onChange={updateText}
+              style={{ width: "100%", padding: "0.75rem 1rem" }}
             />
-            <p className="font12 red">{error.city}</p>
-          </div>
-          <div className="width30">
-            <CustomInputs
-              styles={{
-                width: "width100",
-                placeHolder: "State / Province...",
-                type: "text",
-                name: "state",
-              }}
-              updateText={updateText}
+          </Form.Item>
+          <Form.Item
+            required
+            rules={[
+              { required: true, message: "Phone should not be empty" },
+              { min: 7, message: "Number not complete" },
+            ]}
+            name="phoneNumber"
+            style={{ width: "30%", marginBottom: 0 }}
+          >
+            <Input
+              autoComplete="false"
+              name="phoneNumber"
+              placeholder="Phone Number..."
+              type="text"
+              onChange={updateText}
+              style={{ width: "100%", padding: "0.75rem 1rem" }}
             />
-            <p className="font12 red">{error.state}</p>
-          </div>
-          <div className="width30">
-            <CustomInputs
-              styles={{
-                width: "width100",
-                placeHolder: "Postal Code...",
-                type: "text",
-                name: "postalCode",
-              }}
-              updateText={updateText}
+          </Form.Item>
+          <Form.Item
+            required
+            rules={[
+              { required: true, message: "Postal Code should not be empty" },
+            ]}
+            name="postalCode"
+            style={{ width: "30%", marginBottom: 0 }}
+          >
+            <Input
+              autoComplete="false"
+              name="postalCode"
+              placeholder="Postal Code..."
+              type="text"
+              onChange={updateText}
+              style={{ width: "100%", padding: "0.75rem 1rem" }}
             />
-            <p className="font12 red">{error.postalCode}</p>
-          </div>
-        </div>
-        <div className="width100">
-          <CustomInputs
-            styles={{
-              width: "width100",
-              placeHolder: "Phone Number...",
-              type: "text",
-              name: "phoneNumber",
-            }}
-            updateText={updateText}
-          />
-          <p className="font12 red">{error.phoneNumber}</p>
+          </Form.Item>
         </div>
       </div>
       <section className="flex column gap1rem width100">
@@ -182,14 +265,11 @@ const PaymentDetailsForm = () => {
           <p className="font16">All transactions are secure and encrypted.</p>
           <PaymentOptions />
         </div>
-        <button
-          onClick={submitOrder}
-          className="pay_now_btn flex justify_center pointer"
-        >
+        <Button htmlType="submit" className="pay_now_btn  pointer">
           Pay Now
-        </button>
+        </Button>
       </section>
-    </div>
+    </Form>
   );
 };
 
