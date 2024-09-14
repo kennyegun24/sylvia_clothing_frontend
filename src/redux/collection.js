@@ -7,7 +7,6 @@ export const getAllCategories = createAsyncThunk(
       "https://bk-fabrics-server.vercel.app/api/categories/all"
     );
     const data = await res.json();
-    console.log("data");
     return data;
   }
 );

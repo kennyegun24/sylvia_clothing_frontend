@@ -53,7 +53,6 @@ const cartSlice = createSlice({
     },
     addQuantity: (state, action) => {
       const updatedProduct = action.payload;
-      console.log(updatedProduct);
       let existingProduct = state.products.find(
         (product) => product.id === updatedProduct
       );
@@ -68,7 +67,6 @@ const cartSlice = createSlice({
     },
     decreaseQuantity: (state, action) => {
       const updatedProduct = action.payload;
-      console.log(updatedProduct);
       let existingProduct = state.products.find(
         (product) => product.id === updatedProduct
       );

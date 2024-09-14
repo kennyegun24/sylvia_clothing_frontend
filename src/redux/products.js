@@ -23,7 +23,6 @@ export const getOneProduct = createAsyncThunk("products/1", async (id) => {
 
 // new products
 export const getNewProducts = createAsyncThunk("products/new", async () => {
-  console.log("data");
   const res = await fetch(
     `https://bk-fabrics-server.vercel.app/api/product/all?new=${true}`
   );
@@ -93,7 +92,6 @@ const productsSlice = createSlice({
         const isFulfilled = state;
         isFulfilled.status = "Fulfilled";
         isFulfilled.allProducts = action.payload;
-        console.log(action.payload);
       })
       .addCase(getOneProduct.fulfilled, (state, action) => {
         const isFulfilled = state;
@@ -118,7 +116,6 @@ const productsSlice = createSlice({
         isFulfilled.status = "Fulfilled";
         const dataJson = action.payload;
         isFulfilled.bestSellingProducts = dataJson;
-        console.log(action.payload);
       });
   },
 });
