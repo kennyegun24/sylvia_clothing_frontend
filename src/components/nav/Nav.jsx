@@ -9,7 +9,7 @@ import {
   FaTwitter,
   FaWhatsapp,
 } from "react-icons/fa";
-import logo from "../../assets/logo.jpg";
+// import logo from "../../assets/logo.jpg";
 import { ShowCartContext } from "../../context/showCart";
 import CategoriesHover from "./CategoriesHover";
 import { IoMdArrowDropdown } from "react-icons/io";
@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/user";
 import whatsappIcon from "../../assets/whatsapp_icon.png";
 import facebookIcon from "../../assets/facebook_icon.png";
+import logo from "../../assets/bk_logo3.png";
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
@@ -87,7 +88,8 @@ const Nav = () => {
             <p class="cta_list">+233 244 251316</p>
           </div>
 
-          <h2>BK Fabrics</h2>
+          {/* <h2>BK Fabrics</h2> */}
+          <img className="logo" src={logo} alt="" />
 
           <div class="sec_nav_sub_item_div">
             <p class="cta">Follow Us:</p>

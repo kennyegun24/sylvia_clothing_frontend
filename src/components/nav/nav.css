@@ -244,6 +244,12 @@
   position: relative;
   gap: 0.5rem;
   margin-top: 2rem;
+
+  .logo {
+    height: 60px;
+    width: 110px;
+    object-fit: contain;
+  }
   .sec_nav {
     display: flex;
     justify-content: space-between;
