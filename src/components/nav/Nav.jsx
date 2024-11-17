@@ -105,7 +105,7 @@ const Nav = () => {
           <p ref={buttonRef} onMouseEnter={handleMouseEnter}>
             Categories
           </p>
-          <Link to={"/cart/checkout"}>Cart</Link>
+          {/* <Link to={"/cart/checkout"}>Cart</Link> */}
           {!currentUser ? (
             <Link className="font15 login_btn hide_login_logout" to="/login">
               Login
