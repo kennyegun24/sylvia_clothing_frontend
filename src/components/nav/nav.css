@@ -215,17 +215,26 @@
   }
   .cart_icon {
     position: relative;
-
+    /* overflow: hidden; */
     .cart_no_of_items {
       position: absolute;
       top: 0px;
       font-size: 10px;
       right: 0px;
       background-color: red;
-      height: 10px;
-      width: 10px;
+      height: 12px;
+      width: 12px;
       border-radius: 50%;
+      overflow: hidden;
+      /* padding: 0.25rem; */
     }
+
+    /* .cart_no_of_items {
+      position: absolute;
+      font-size: 8px;
+      left: 0;
+      color: red;
+    } */
   }
 }
 
@@ -263,6 +272,8 @@
       .cta_list {
         font-size: 13px;
         font-weight: 600;
+        text-decoration: none;
+        color: initial;
       }
     }
   }

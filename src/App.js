@@ -26,7 +26,7 @@ function App() {
     <div className="app flex column">
       <ShowCartProvider>
         {pathName !== "/login" && pathName !== "/register" && <Nav />}
-        {/* <CartModal /> */}
+        <CartModal />
         <Toaster />
         <div style={{ minHeight: "70vh", background: "#f4f4f4" }}>
           <Routes>
@@ -38,7 +38,7 @@ function App() {
               path="/collections/:name/:product/:id"
               element={<Product />}
             />
-            {/* <Route
+            <Route
               path="/cart/checkout"
               element={currentUser ? <Cart /> : <Navigate to={"/login"} />}
             />
@@ -49,7 +49,7 @@ function App() {
             <Route
               path="/payment/failure"
               element={currentUser ? <Failure /> : <Navigate to={"/login"} />}
-            /> */}
+            />
             <Route
               path="/login"
               element={

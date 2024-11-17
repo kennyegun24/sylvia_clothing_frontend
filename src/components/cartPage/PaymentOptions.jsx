@@ -13,14 +13,14 @@ const PaymentOptions = () => {
           className="pointer"
         />
         <label htmlFor="payment1" className="pointer font14">
-          Stripe
+          MoMo
         </label>
       </section>
       <section className="flex align_center column gap1rem justify_center padding2rem payment_option_body">
         <PiCreditCardThin className="card_icon" />
         <p className="textCenter">
-          After clicking “Pay now”, you will be redirected to Stripe to complete
-          your purchase securely.
+          Make the payment via momo app, then contact the seller after
+          successfully making the payment.
           <br />
           <br />
           IMPORTANT: Make sure you use thesame EMAIL ADDRESS and NAME YOU FILLED

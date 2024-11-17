@@ -7,6 +7,7 @@ import {
   FaGooglePlusG,
   FaInstagram,
   FaTwitter,
+  FaWhatsapp,
 } from "react-icons/fa";
 import logo from "../../assets/logo.jpg";
 import { ShowCartContext } from "../../context/showCart";
@@ -15,15 +16,17 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/user";
+import whatsappIcon from "../../assets/whatsapp_icon.png";
+import facebookIcon from "../../assets/facebook_icon.png";
 
 const Nav = () => {
-  // const [toggle, setToggle] = useState(false);
-  // const { toggleCart } = useContext(ShowCartContext);
+  const [toggle, setToggle] = useState(false);
+  const { toggleCart } = useContext(ShowCartContext);
   const dispatch = useDispatch();
-  // const showHide = () => {
-  //   setToggle((prev) => !prev);
-  // };
-  // const { products } = useSelector((state) => state.cart);
+  const showHide = () => {
+    setToggle((prev) => !prev);
+  };
+  const { products } = useSelector((state) => state.cart);
   const [showCollections, setShowCollections] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
   const logoutUser = () => {
@@ -54,6 +57,12 @@ const Nav = () => {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
+  const gen_text = "Hello,%20I%20want%20to%20purchase%20these%20items";
+
+  const redirectToWhatsapp = () => {
+    const link = `https://wa.me/233244251316?text=${gen_text}`;
+    window.open(link);
+  };
   return (
     <>
       <nav class="nav">
@@ -63,19 +72,19 @@ const Nav = () => {
           <Link to={"/products/search"} className="search_icon">
             <CiSearch className="font20 pointer" />
           </Link>
-          {/* <div className="cart_icon">
-            <CiShoppingCart className="font20 pointer" onClick={toggleCart} />
+          <div className="cart_icon">
+            <CiShoppingCart className="font24 pointer" onClick={toggleCart} />
             <p className="cart_no_of_items flex justify_center align_center">
               {products.length}
             </p>
-          </div> */}
+          </div>
         </div>
       </nav>
       <section class="sec_nav_container">
         <div class="sec_nav">
           <div class="sec_nav_sub_item_div">
             <p class="cta">Call us:</p>
-            <p class="cta_list">+1234567890</p>
+            <p class="cta_list">+233 244 251316</p>
           </div>
 
           <h2>BK Fabrics</h2>
@@ -84,18 +93,21 @@ const Nav = () => {
             <p class="cta">Follow Us:</p>
 
             <div class="cta_action">
-              <p class="cta_list">
-                <FaFacebook />
-              </p>
-              <p class="cta_list">
+              <a href="/" class="cta_list">
+                <img src={facebookIcon} height={"20px"} width={"20px"} />
+              </a>
+              {/* <p class="cta_list">
                 <FaTwitter />
+              </p> */}
+              <p onClick={redirectToWhatsapp} href="/" class="cta_list pointer">
+                <img src={whatsappIcon} height={"20px"} width={"20px"} />
               </p>
-              <p class="cta_list">
+              {/* <p class="cta_list">
                 <FaInstagram />
               </p>
               <p class="cta_list">
                 <FaGooglePlusG />
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
@@ -105,7 +117,7 @@ const Nav = () => {
           <p ref={buttonRef} onMouseEnter={handleMouseEnter}>
             Categories
           </p>
-          {/* <Link to={"/cart/checkout"}>Cart</Link> */}
+          <Link to={"/cart/checkout"}>Cart</Link>
           {!currentUser ? (
             <Link className="font15 login_btn hide_login_logout" to="/login">
               Login
