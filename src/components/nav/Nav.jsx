@@ -17,13 +17,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../redux/user";
 
 const Nav = () => {
-  const [toggle, setToggle] = useState(false);
-  const { toggleCart } = useContext(ShowCartContext);
+  // const [toggle, setToggle] = useState(false);
+  // const { toggleCart } = useContext(ShowCartContext);
   const dispatch = useDispatch();
-  const showHide = () => {
-    setToggle((prev) => !prev);
-  };
-  const { products } = useSelector((state) => state.cart);
+  // const showHide = () => {
+  //   setToggle((prev) => !prev);
+  // };
+  // const { products } = useSelector((state) => state.cart);
   const [showCollections, setShowCollections] = useState(false);
   const { currentUser } = useSelector((state) => state.user);
   const logoutUser = () => {
@@ -63,12 +63,12 @@ const Nav = () => {
           <Link to={"/products/search"} className="search_icon">
             <CiSearch className="font20 pointer" />
           </Link>
-          <div className="cart_icon">
+          {/* <div className="cart_icon">
             <CiShoppingCart className="font20 pointer" onClick={toggleCart} />
             <p className="cart_no_of_items flex justify_center align_center">
               {products.length}
             </p>
-          </div>
+          </div> */}
         </div>
       </nav>
       <section class="sec_nav_container">
