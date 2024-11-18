@@ -70,7 +70,7 @@ const CartModal = () => {
                   {item.product.product_name}
                 </p>
                 <p className="font14 fontW700 cart_product_name_price">
-                  ${item.price}
+                  ₵{item.price}
                 </p>
                 <div className="flex justify_between align_center">
                   <p className="font12 pointer">
@@ -105,7 +105,7 @@ const CartModal = () => {
 
         <section className="padding1rem flex align_center justify_between sub_total">
           <h3>Subtotal</h3>
-          <p className="fontW700">${total}</p>
+          <p className="fontW700">₵{total}</p>
         </section>
         <Link
           to={"/cart/checkout"}

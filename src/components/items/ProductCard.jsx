@@ -32,7 +32,7 @@ const ProductCard = ({ cat }) => {
             <p>4 stars (124)</p>
           </div>
           <p className="font16 fontW700">{cat.product_name}</p>
-          <p className="font18">${cat.price}</p>
+          <p className="font18">₵{cat.price}</p>
           <p className="font16">{cat.in_stock} in stock</p>
         </div>
       </Link>

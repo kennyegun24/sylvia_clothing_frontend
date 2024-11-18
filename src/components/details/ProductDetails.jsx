@@ -61,7 +61,7 @@ const ProductDetails = () => {
         </section>
         <section className="product_details_desc_div flex gap15rem column">
           <h1>{product?.product_name}</h1>
-          <h5 className="font20">${product?.price}</h5>
+          <h5 className="font20">₵{product?.price}</h5>
 
           <section className="flex column gap1rem product_details_quantity_div">
             <h5>Quantity</h5>

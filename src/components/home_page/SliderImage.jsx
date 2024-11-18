@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import model3 from "../../assets/model.png";
 import model2 from "../../assets/model4.png";
-import model1 from "../../assets/bggh8-removebg-preview.png";
+import model1 from "../../assets/model0.png";
 
 const SliderImage = () => {
   const slides = [
