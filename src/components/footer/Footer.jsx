@@ -1,6 +1,7 @@
 import React from "react";
 import "./footer.css";
 import { FaFacebook, FaInstagram, FaWhatsapp } from "react-icons/fa";
+import Socials from "../Socials";
 
 const Footer = () => {
   return (
@@ -31,11 +32,7 @@ const Footer = () => {
             </div>
           </section>
         </div>
-        <div className="flex gap1rem">
-          <FaWhatsapp />
-          <FaInstagram />
-          <FaFacebook />
-        </div>
+        <Socials className="flex gap1rem align_center" />
         <hr className="width100 footer_line" />
         <div className="flex align_center footer_bottom">
           <p className="font10">&copy; 2024, BK CLOTHINGS</p>

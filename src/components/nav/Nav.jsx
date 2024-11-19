@@ -19,6 +19,7 @@ import { logout } from "../../redux/user";
 import whatsappIcon from "../../assets/whatsapp_icon.png";
 import facebookIcon from "../../assets/facebook_icon.png";
 import logo from "../../assets/bk_logo3.png";
+import Socials from "../Socials";
 
 const Nav = () => {
   const [toggle, setToggle] = useState(false);
@@ -94,23 +95,7 @@ const Nav = () => {
           <div class="sec_nav_sub_item_div">
             <p class="cta">Follow Us:</p>
 
-            <div class="cta_action">
-              <a href="/" class="cta_list">
-                <img src={facebookIcon} height={"20px"} width={"20px"} />
-              </a>
-              {/* <p class="cta_list">
-                <FaTwitter />
-              </p> */}
-              <p onClick={redirectToWhatsapp} href="/" class="cta_list pointer">
-                <img src={whatsappIcon} height={"20px"} width={"20px"} />
-              </p>
-              {/* <p class="cta_list">
-                <FaInstagram />
-              </p>
-              <p class="cta_list">
-                <FaGooglePlusG />
-              </p> */}
-            </div>
+            <Socials />
           </div>
         </div>
 
